@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mochilas Shortlist — Mati BCN</title>
+<title>Mochilas Shortlist v3 — Mati BCN</title>
 <style>
   :root {
     --bg: #0a0a0a;
@@ -14,6 +14,7 @@
     --pass: #4ade80;
     --top: #fbbf24;
     --soñada: #a78bfa;
+    --planb: #60a5fa;
     --fail: #ef4444;
     --border: #2a2a2a;
   }
@@ -29,27 +30,61 @@
   }
   @media (min-width: 768px) { body { padding: 2rem 3rem; } }
   header { margin-bottom: 2rem; }
-  h1 { font-size: 1.8rem; margin-bottom: 0.5rem; letter-spacing: -0.02em; }
+  h1 { font-size: 1.7rem; margin-bottom: 0.5rem; letter-spacing: -0.02em; }
   @media (min-width: 768px) { h1 { font-size: 2.5rem; } }
-  h2 { font-size: 1.3rem; margin: 2.5rem 0 1.2rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
-  h3 { font-size: 1.1rem; margin: 0.5rem 0; }
+  h2 { font-size: 1.25rem; margin: 2.5rem 0 1.2rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+  h3 { font-size: 1.05rem; margin: 0.5rem 0; }
   p.dim { color: var(--text-dim); font-size: 0.9rem; }
 
+  .flag-box {
+    background: rgba(251, 191, 36, 0.1);
+    border: 1px solid var(--top);
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+  }
+  .flag-box strong { color: var(--top); }
+
+  .old-bag {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  @media (min-width: 768px) { .old-bag { grid-template-columns: 200px 1fr; align-items: center; } }
+  .old-bag img {
+    width: 100%; max-width: 200px; height: auto;
+    border-radius: 8px; display: block;
+    margin: 0 auto;
+  }
+  .old-bag h3 { color: var(--top); margin-bottom: 0.3rem; }
+  .old-bag p { font-size: 0.85rem; color: var(--text-dim); margin: 0.2rem 0; }
+
   .litraje {
-    display: flex; gap: 0.5rem; align-items: flex-end;
-    background: var(--card-bg); padding: 1.5rem 1rem; border-radius: 12px;
+    display: flex; gap: 0.4rem; align-items: flex-end;
+    background: var(--card-bg); padding: 1.5rem 0.8rem; border-radius: 12px;
     border: 1px solid var(--border); margin: 1rem 0;
+    overflow-x: auto;
   }
   .litraje .bar {
-    flex: 1; background: linear-gradient(180deg, var(--accent), #999);
-    color: var(--bg); padding: 0.5rem 0.3rem; border-radius: 6px;
-    text-align: center; font-weight: 700; font-size: 0.75rem;
+    flex: 1; min-width: 50px;
+    background: linear-gradient(180deg, var(--accent), #999);
+    color: var(--bg); padding: 0.4rem 0.2rem; border-radius: 6px;
+    text-align: center; font-weight: 700; font-size: 0.7rem;
     display: flex; flex-direction: column; justify-content: flex-end;
+    position: relative;
   }
   .litraje .bar small {
-    display: block; font-weight: 400; font-size: 0.6rem; opacity: 0.85;
+    display: block; font-weight: 400; font-size: 0.55rem; opacity: 0.85;
     margin-top: 0.2rem;
   }
+  .litraje .bar.cap-limit { background: linear-gradient(180deg, var(--fail), #800); color: white; }
+  .litraje .bar.old-mark { background: linear-gradient(180deg, var(--top), #886); color: black; border: 2px solid var(--top); }
 
   .grid {
     display: grid;
@@ -66,68 +101,99 @@
     border-radius: 12px;
     overflow: hidden;
     display: flex; flex-direction: column;
-    transition: transform 0.2s, border-color 0.2s;
   }
-  .card.top { border: 2px solid var(--top); }
+  .card.top-match { border: 2px solid var(--pass); }
+  .card.borderline { border: 1.5px solid var(--soñada); }
+  .card.planb { border: 1.5px solid var(--planb); }
   .card.fail-warn { border: 2px solid var(--fail); }
+  .card.ideal-too-big { border: 2px dashed var(--top); }
 
   .gallery { background: #fff; }
   .main-img {
-    width: 100%; height: 300px;
+    width: 100%; height: 280px;
     object-fit: contain; background: #fff;
     display: block;
   }
-  @media (min-width: 768px) { .main-img { height: 340px; } }
+  @media (min-width: 768px) { .main-img { height: 320px; } }
   .thumbs {
     display: flex; gap: 6px; padding: 8px;
     overflow-x: auto; background: #ededed;
-    scrollbar-width: thin;
   }
   .thumb {
-    width: 60px; height: 60px; object-fit: cover;
+    width: 55px; height: 55px; object-fit: cover;
     cursor: pointer; border: 2px solid transparent;
     flex-shrink: 0; border-radius: 4px;
-    transition: border-color 0.15s, transform 0.15s;
   }
-  .thumb:hover { transform: scale(1.05); }
   .thumb.active { border-color: #000; }
 
-  .card-body { padding: 1.2rem; flex: 1; display: flex; flex-direction: column; }
+  .card-body { padding: 1rem; flex: 1; display: flex; flex-direction: column; }
+  .badges-row { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-bottom: 0.4rem; }
   .badge {
-    display: inline-block; padding: 0.3rem 0.6rem;
-    border-radius: 4px; font-size: 0.7rem;
+    display: inline-block; padding: 0.25rem 0.5rem;
+    border-radius: 4px; font-size: 0.65rem;
     font-weight: 700; text-transform: uppercase;
-    letter-spacing: 0.05em; margin-right: 0.3rem; margin-bottom: 0.4rem;
+    letter-spacing: 0.04em;
   }
-  .badge-top { background: var(--top); color: #000; }
-  .badge-pass { background: var(--pass); color: #000; }
-  .badge-soñada { background: var(--soñada); color: #000; }
-  .badge-warn { background: var(--fail); color: #fff; font-size: 0.65rem; }
+  .badge-top { background: var(--pass); color: #000; }
+  .badge-borderline { background: var(--soñada); color: #000; }
+  .badge-planb { background: var(--planb); color: #000; }
+  .badge-warn { background: var(--fail); color: #fff; font-size: 0.6rem; }
+  .badge-ideal { background: var(--top); color: #000; }
 
-  .price { font-size: 1.6rem; font-weight: 700; margin: 0.3rem 0; }
-  .meta { color: var(--text-dim); font-size: 0.85rem; margin-bottom: 0.5rem; }
+  .price { font-size: 1.4rem; font-weight: 700; margin: 0.3rem 0; }
+  .meta { color: var(--text-dim); font-size: 0.8rem; margin-bottom: 0.6rem; }
 
-  .specs { list-style: none; margin: 0.8rem 0; font-size: 0.85rem; }
-  .specs li { padding: 0.3rem 0; border-bottom: 1px solid var(--border); }
-  .specs li:last-child { border-bottom: none; }
-  .specs .ok { color: var(--pass); }
-  .specs .nope { color: var(--fail); }
-  .specs .meh { color: var(--text-dim); }
+  .prefs-check {
+    background: rgba(255,255,255,0.03);
+    border-radius: 6px;
+    padding: 0.6rem 0.8rem;
+    margin: 0.7rem 0;
+    font-size: 0.78rem;
+  }
+  .prefs-check h4 {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-dim);
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+  }
+  .prefs-check ul { list-style: none; }
+  .prefs-check li {
+    padding: 0.2rem 0;
+    border-bottom: 1px dotted var(--border);
+  }
+  .prefs-check li:last-child { border-bottom: none; }
+  .prefs-check .ok { color: var(--pass); }
+  .prefs-check .nope { color: var(--fail); }
+  .prefs-check .meh { color: var(--text-dim); }
+  .prefs-check .label {
+    font-size: 0.6rem;
+    background: var(--border);
+    padding: 1px 4px;
+    border-radius: 2px;
+    margin-right: 0.3rem;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  .prefs-check .label-must { background: #5c1a1a; color: #fcc; }
+  .prefs-check .label-nice { background: #1a3a5c; color: #cef; }
+  .prefs-check .label-bonus { background: #2a2a2a; color: #888; }
 
-  .summary { font-size: 0.85rem; color: var(--text-dim); margin: 0.5rem 0 1rem; font-style: italic; }
+  .summary { font-size: 0.8rem; color: var(--text-dim); margin: 0.4rem 0 0.8rem; font-style: italic; }
 
   .url-btn {
     display: inline-block;
     background: var(--accent); color: var(--bg);
-    padding: 0.7rem 1rem; border-radius: 6px;
+    padding: 0.6rem 1rem; border-radius: 6px;
     text-decoration: none; font-weight: 600;
-    font-size: 0.85rem; margin-top: auto;
+    font-size: 0.8rem; margin-top: auto;
     text-align: center;
   }
 
   .descartadas {
     background: var(--card-bg);
-    padding: 1.5rem; border-radius: 12px;
+    padding: 1.2rem; border-radius: 12px;
     border: 1px solid var(--border);
   }
   .descartadas ul { list-style: none; }
@@ -139,359 +205,417 @@
   .descartadas li b { color: var(--text); }
 
   .legend {
-    display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;
-    font-size: 0.8rem; color: var(--text-dim);
+    display: flex; gap: 0.8rem; margin-bottom: 1.2rem; flex-wrap: wrap;
+    font-size: 0.75rem; color: var(--text-dim);
   }
   .legend span { display: flex; align-items: center; gap: 0.3rem; }
   .legend .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
-
-  .top-banner {
-    background: linear-gradient(135deg, rgba(251,191,36,0.12), rgba(251,191,36,0.02));
-    border: 1px solid var(--top); border-radius: 12px;
-    padding: 1.2rem; margin-bottom: 1.5rem;
-  }
-  .top-banner h3 { color: var(--top); margin-bottom: 0.3rem; font-size: 1.15rem; }
-  .top-banner p { font-size: 0.9rem; }
 </style>
 </head>
 <body>
 
 <header>
-  <h1>Mochilas — Shortlist verificada</h1>
-  <p class="dim">Mati en BCN · cap menor a 28L · ≤€135 (excepción soñadas hasta €200) · color oscuro · chest+hipbelt+pockets · NO padding outdoorsy</p>
+  <h1>Mochilas Shortlist v3</h1>
+  <p class="dim">Mati en BCN · cap menor a 28L · ≤€135 (excepción soñadas hasta €200) · color oscuro · chest+hipbelt+pockets</p>
 </header>
 
+<section>
+  <h2>📷 Tu mochila vieja (referencia)</h2>
+  <div class="old-bag">
+    <img src="old-bag.jpg" alt="Rip Curl Posse Stacka 30L">
+    <div>
+      <h3>Rip Curl Posse Stacka — 30L</h3>
+      <p>Dimensiones: 49 × 37 × 22 cm</p>
+      <p>Padded straps + breathable mesh back + skate carry front + laptop sleeve interno + top handle</p>
+      <p style="color: var(--top); margin-top: 0.5rem;"><strong>⚠️ Flag:</strong> Tu vieja era 30L y te funciona. Vos dijiste cap "&lt;28L no inclusivo". <strong>¿Subimos target a 28-30L?</strong> Avisame y reabro candidatos en ese rango.</p>
+    </div>
+  </div>
+</section>
+
+<div class="flag-box">
+  <strong>📌 Cambios v3:</strong>
+  <ul style="margin: 0.5rem 0 0 1rem; font-size: 0.85rem;">
+    <li>Sacadas: TNF Trail Lite 24L, JW Astro Vent, JW Velocity, Vaude Wizard, Tropicfeel Hive, Decathlon NH Escape</li>
+    <li>Nuevas: Salomon XT 20, TNF Trail Lite Speed 20, TNF Universal Daypack 20L, TNF Basin 18, Mantis 16</li>
+    <li>Cada card: sección "cumple/no cumple" con tus preferences (must / nice / bonus / won't)</li>
+    <li>Anotada TNF Borealis 28L como IDEAL pero descartada por cap</li>
+  </ul>
+</div>
+
 <div class="legend">
-  <span><span class="dot" style="background:var(--top)"></span> ⭐ TOP MATCH</span>
-  <span><span class="dot" style="background:var(--pass)"></span> PASS (≤€135)</span>
-  <span><span class="dot" style="background:var(--soñada)"></span> SOÑADAS (€135-€200)</span>
+  <span><span class="dot" style="background:var(--pass)"></span> TOP MATCH (PASS)</span>
+  <span><span class="dot" style="background:var(--soñada)"></span> BORDERLINE</span>
+  <span><span class="dot" style="background:var(--planb)"></span> PLAN B</span>
+  <span><span class="dot" style="background:var(--top)"></span> IDEAL pero descartada</span>
   <span><span class="dot" style="background:var(--fail)"></span> Caveat</span>
 </div>
 
-<h2>Litraje visual</h2>
-<p class="dim">Tu carga típica (laptop + libreta + cargador + cámara) entra cómoda en 18-20L. Sweet spot 20-26L da margen.</p>
+<h2>Litraje visual (Rip Curl vieja marcada)</h2>
 <div class="litraje">
-  <div class="bar" style="height: 80px;">16L<br><small>laptop</small></div>
-  <div class="bar" style="height: 110px;">20L<br><small>+ chaqueta</small></div>
-  <div class="bar" style="height: 130px;">22L<br><small>+ cámara</small></div>
-  <div class="bar" style="height: 150px;">23L<br><small>+ agua</small></div>
-  <div class="bar" style="height: 170px;">24L<br><small>sweet spot</small></div>
-  <div class="bar" style="height: 190px;">26L<br><small>+ ropa</small></div>
-  <div class="bar" style="height: 215px; background: linear-gradient(180deg, var(--fail), #800);">28L<br><small>límite</small></div>
+  <div class="bar" style="height: 70px;">16L<br><small>laptop</small></div>
+  <div class="bar" style="height: 100px;">20L<br><small>+ chaqueta</small></div>
+  <div class="bar" style="height: 120px;">23L<br><small>+ agua</small></div>
+  <div class="bar" style="height: 140px;">24L<br><small>sweet spot</small></div>
+  <div class="bar" style="height: 165px;">26L<br><small>+ ropa</small></div>
+  <div class="bar cap-limit" style="height: 185px;">28L<br><small>tu límite</small></div>
+  <div class="bar old-mark" style="height: 205px;">30L<br><small>Rip Curl vieja</small></div>
 </div>
 
-<div class="top-banner">
-  <h3>🦄 La unicorn</h3>
-  <p>Borealis-like al 100% (bungee front + compression + chest + webbing hipbelt removable + black) en 24L y €90.</p>
-</div>
-
-<h2>⭐ TOP MATCH</h2>
+<h2>⭐ TOP MATCH (PASS — cumplen todo)</h2>
 <div class="grid">
 
-  <article class="card top">
+  <article class="card top-match">
     <div class="gallery">
-      <img id="m1" class="main-img" src="https://eu.gregorypacks.com/dw/image/v2/AATF_PRD/on/demandware.static/-/Sites-gregory-product-catalog/default/dw5c441427/images/gene/prod/zoom/153059-9974_01.jpg?sw=1000&sh=1500" alt="Gregory Nano 24">
+      <img id="m1" class="main-img" src="https://www.bfgcdn.com/1500_1500_90/502-7291/salomon-xt-20-mochila-de-senderismo.jpg" alt="Salomon XT 20 Black">
       <div class="thumbs">
-        <img class="thumb active" onclick="sm('m1',this)" data-full="https://eu.gregorypacks.com/dw/image/v2/AATF_PRD/on/demandware.static/-/Sites-gregory-product-catalog/default/dw5c441427/images/gene/prod/zoom/153059-9974_01.jpg?sw=1000&sh=1500" src="https://eu.gregorypacks.com/dw/image/v2/AATF_PRD/on/demandware.static/-/Sites-gregory-product-catalog/default/dw5c441427/images/gene/prod/zoom/153059-9974_01.jpg?sw=200">
-        <img class="thumb" onclick="sm('m1',this)" data-full="https://eu.gregorypacks.com/dw/image/v2/AATF_PRD/on/demandware.static/-/Sites-gregory-product-catalog/default/dw650f62d2/images/gene/prod/zoom/153059-9974_02.jpg?sw=1000&sh=1500" src="https://eu.gregorypacks.com/dw/image/v2/AATF_PRD/on/demandware.static/-/Sites-gregory-product-catalog/default/dw650f62d2/images/gene/prod/zoom/153059-9974_02.jpg?sw=200">
-        <img class="thumb" onclick="sm('m1',this)" data-full="https://eu.gregorypacks.com/dw/image/v2/AATF_PRD/on/demandware.static/-/Sites-gregory-product-catalog/default/dw081295c7/images/gene/prod/zoom/153059-9974_03.jpg?sw=1000&sh=1500" src="https://eu.gregorypacks.com/dw/image/v2/AATF_PRD/on/demandware.static/-/Sites-gregory-product-catalog/default/dw081295c7/images/gene/prod/zoom/153059-9974_03.jpg?sw=200">
-        <img class="thumb" onclick="sm('m1',this)" data-full="https://eu.gregorypacks.com/dw/image/v2/AATF_PRD/on/demandware.static/-/Sites-gregory-product-catalog/default/dwebdd465e/images/gene/prod/zoom/153059-9974_04.jpg?sw=1000&sh=1500" src="https://eu.gregorypacks.com/dw/image/v2/AATF_PRD/on/demandware.static/-/Sites-gregory-product-catalog/default/dwebdd465e/images/gene/prod/zoom/153059-9974_04.jpg?sw=200">
-        <img class="thumb" onclick="sm('m1',this)" data-full="https://eu.gregorypacks.com/dw/image/v2/AATF_PRD/on/demandware.static/-/Sites-gregory-product-catalog/default/dw0e7c40f0/images/gene/prod/zoom/153059-9974_05.jpg?sw=1000&sh=1500" src="https://eu.gregorypacks.com/dw/image/v2/AATF_PRD/on/demandware.static/-/Sites-gregory-product-catalog/default/dw0e7c40f0/images/gene/prod/zoom/153059-9974_05.jpg?sw=200">
-        <img class="thumb" onclick="sm('m1',this)" data-full="https://eu.gregorypacks.com/dw/image/v2/AATF_PRD/on/demandware.static/-/Sites-gregory-product-catalog/default/dw8d50f952/images/gene/prod/zoom/153059-9974_06.jpg?sw=1000&sh=1500" src="https://eu.gregorypacks.com/dw/image/v2/AATF_PRD/on/demandware.static/-/Sites-gregory-product-catalog/default/dw8d50f952/images/gene/prod/zoom/153059-9974_06.jpg?sw=200">
+        <img class="thumb active" onclick="sm('m1',this)" data-full="https://www.bfgcdn.com/1500_1500_90/502-7291/salomon-xt-20-mochila-de-senderismo.jpg" src="https://www.bfgcdn.com/1500_1500_90/502-7291/salomon-xt-20-mochila-de-senderismo.jpg">
+        <img class="thumb" onclick="sm('m1',this)" data-full="https://www.bfgcdn.com/1500_1500_90/502-7291/salomon-xt-20-mochila-de-senderismo-detail-2.jpg" src="https://www.bfgcdn.com/1500_1500_90/502-7291/salomon-xt-20-mochila-de-senderismo-detail-2.jpg">
+        <img class="thumb" onclick="sm('m1',this)" data-full="https://www.bfgcdn.com/1500_1500_90/502-7291/salomon-xt-20-mochila-de-senderismo-detail-3.jpg" src="https://www.bfgcdn.com/1500_1500_90/502-7291/salomon-xt-20-mochila-de-senderismo-detail-3.jpg">
+        <img class="thumb" onclick="sm('m1',this)" data-full="https://www.bfgcdn.com/1500_1500_90/502-7291/salomon-xt-20-mochila-de-senderismo-detail-4.jpg" src="https://www.bfgcdn.com/1500_1500_90/502-7291/salomon-xt-20-mochila-de-senderismo-detail-4.jpg">
+        <img class="thumb" onclick="sm('m1',this)" data-full="https://www.bfgcdn.com/1500_1500_90/502-7291/salomon-xt-20-mochila-de-senderismo-detail-5.jpg" src="https://www.bfgcdn.com/1500_1500_90/502-7291/salomon-xt-20-mochila-de-senderismo-detail-5.jpg">
+        <img class="thumb" onclick="sm('m1',this)" data-full="https://www.bfgcdn.com/1500_1500_90/502-7291/salomon-xt-20-mochila-de-senderismo-detail-7.jpg" src="https://www.bfgcdn.com/1500_1500_90/502-7291/salomon-xt-20-mochila-de-senderismo-detail-7.jpg">
       </div>
     </div>
     <div class="card-body">
-      <div><span class="badge badge-top">⭐ TOP UNICORN</span></div>
+      <div class="badges-row"><span class="badge badge-top">TOP MATCH</span></div>
+      <h3>Salomon XT 20 — Black</h3>
+      <div class="price">€85</div>
+      <div class="meta">20L · 550g · Full Black confirmado</div>
+      <div class="prefs-check">
+        <h4>Cumple tus preferences</h4>
+        <ul>
+          <li class="ok"><span class="label label-must">must</span>✓ Cap &lt;28L (20L)</li>
+          <li class="ok"><span class="label label-must">must</span>✓ Chest strap (doble)</li>
+          <li class="ok"><span class="label label-must">must</span>✓ Hipbelt (padded con bolsillo lumbar)</li>
+          <li class="ok"><span class="label label-must">must</span>✓ Pockets (8 pockets)</li>
+          <li class="ok"><span class="label label-must">must</span>✓ Color oscuro (Black puro)</li>
+          <li class="ok"><span class="label label-must">must</span>✓ Presupuesto (€85)</li>
+          <li class="ok"><span class="label label-nice">nice</span>✓ Bungee front (elastic gear carrier)</li>
+          <li class="ok"><span class="label label-nice">nice</span>✓ Carry handle</li>
+          <li class="ok"><span class="label label-nice">nice</span>✓ Full black</li>
+          <li class="meh"><span class="label label-nice">nice</span>~ Hipbelt PADDED (no webbing simple — más outdoorsy del ideal)</li>
+        </ul>
+      </div>
+      <p class="summary">Cumple casi todos los musts + nices. El padding del hipbelt es lo único en contra estético.</p>
+      <a href="https://www.bergfreunde.es/salomon-xt-20-mochila-de-senderismo/" class="url-btn" target="_blank">Ver en Bergfreunde →</a>
+    </div>
+  </article>
+
+  <article class="card top-match">
+    <div class="gallery">
+      <img id="m2" class="main-img" src="https://www.bfgcdn.com/1500_1500_90/502-8908-0411/the-north-face-trail-lite-speed-20-walking-backpack.jpg" alt="TNF Trail Lite Speed 20 Black">
+      <div class="thumbs">
+        <img class="thumb active" onclick="sm('m2',this)" data-full="https://www.bfgcdn.com/1500_1500_90/502-8908-0411/the-north-face-trail-lite-speed-20-walking-backpack.jpg" src="https://www.bfgcdn.com/1500_1500_90/502-8908-0411/the-north-face-trail-lite-speed-20-walking-backpack.jpg">
+        <img class="thumb" onclick="sm('m2',this)" data-full="https://www.bfgcdn.com/1500_1500_90/502-8908/the-north-face-trail-lite-speed-20-walking-backpack-detail-2.jpg" src="https://www.bfgcdn.com/1500_1500_90/502-8908/the-north-face-trail-lite-speed-20-walking-backpack-detail-2.jpg">
+        <img class="thumb" onclick="sm('m2',this)" data-full="https://www.bfgcdn.com/1500_1500_90/502-8908/the-north-face-trail-lite-speed-20-walking-backpack-detail-3.jpg" src="https://www.bfgcdn.com/1500_1500_90/502-8908/the-north-face-trail-lite-speed-20-walking-backpack-detail-3.jpg">
+        <img class="thumb" onclick="sm('m2',this)" data-full="https://www.bfgcdn.com/1500_1500_90/502-8908/the-north-face-trail-lite-speed-20-walking-backpack-detail-4.jpg" src="https://www.bfgcdn.com/1500_1500_90/502-8908/the-north-face-trail-lite-speed-20-walking-backpack-detail-4.jpg">
+        <img class="thumb" onclick="sm('m2',this)" data-full="https://www.bfgcdn.com/1500_1500_90/502-8908/the-north-face-trail-lite-speed-20-walking-backpack-detail-5.jpg" src="https://www.bfgcdn.com/1500_1500_90/502-8908/the-north-face-trail-lite-speed-20-walking-backpack-detail-5.jpg">
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="badges-row"><span class="badge badge-top">TOP MATCH</span></div>
+      <h3>TNF Trail Lite Speed 20</h3>
+      <div class="price">€105 <span style="font-size: 0.8rem; color: var(--text-dim); text-decoration: line-through; margin-left: 0.4rem;">€120</span></div>
+      <div class="meta">20L · 580g · TNF Black/Asphalt Grey/Black</div>
+      <div class="prefs-check">
+        <h4>Cumple tus preferences</h4>
+        <ul>
+          <li class="ok"><span class="label label-must">must</span>✓ Cap &lt;28L (20L)</li>
+          <li class="ok"><span class="label label-must">must</span>✓ Chest strap (sternum)</li>
+          <li class="ok"><span class="label label-must">must</span>✓ Hipbelt (padded)</li>
+          <li class="ok"><span class="label label-must">must</span>✓ Color oscuro (Black puro disponible)</li>
+          <li class="ok"><span class="label label-must">must</span>✓ Presupuesto (€105)</li>
+          <li class="ok"><span class="label label-nice">nice</span>✓ Full black</li>
+          <li class="meh"><span class="label label-nice">nice</span>~ Hipbelt PADDED (más outdoorsy)</li>
+          <li class="meh"><span class="label label-nice">nice</span>? Bungee front (no confirmado, probable)</li>
+          <li class="nope"><span class="label label-nice">nice</span>✗ Reviews mencionan durabilidad cuestionable (fraying, chest strap se sale)</li>
+        </ul>
+      </div>
+      <p class="summary">Match técnico fuerte pero hay reviews críticas de durabilidad y vibe trail-running.</p>
+      <a href="https://www.bergfreunde.eu/the-north-face-trail-lite-speed-20-walking-backpack/" class="url-btn" target="_blank">Ver en Bergfreunde →</a>
+    </div>
+  </article>
+
+  <article class="card top-match">
+    <div class="gallery">
+      <img id="m3" class="main-img" src="https://images-dynamic-arcteryx.imgix.net/details/1350x1710/S26-X000009825-Mantis-26-Backpack-Black-Front.jpg" alt="Arc'teryx Mantis 16 Black (Mantis 26 mostrada — misma línea)">
+      <div class="thumbs">
+        <img class="thumb active" onclick="sm('m3',this)" data-full="https://images-dynamic-arcteryx.imgix.net/details/1350x1710/S26-X000009825-Mantis-26-Backpack-Black-Front.jpg" src="https://images-dynamic-arcteryx.imgix.net/details/1350x1710/S26-X000009825-Mantis-26-Backpack-Black-Front.jpg?w=120">
+        <img class="thumb" onclick="sm('m3',this)" data-full="https://images-dynamic-arcteryx.imgix.net/details/1350x1710/S26-X000009825-Mantis-26-Backpack-Black-Back.jpg" src="https://images-dynamic-arcteryx.imgix.net/details/1350x1710/S26-X000009825-Mantis-26-Backpack-Black-Back.jpg?w=120">
+        <img class="thumb" onclick="sm('m3',this)" data-full="https://images-dynamic-arcteryx.imgix.net/details/1350x1710/S26-X000009825-Mantis-26-Backpack-Black-Back-View.jpg" src="https://images-dynamic-arcteryx.imgix.net/details/1350x1710/S26-X000009825-Mantis-26-Backpack-Black-Back-View.jpg?w=120">
+        <img class="thumb" onclick="sm('m3',this)" data-full="https://images-dynamic-arcteryx.imgix.net/details/1350x1710/S26-X000009825-Mantis-26-Backpack-Black-Side.jpg" src="https://images-dynamic-arcteryx.imgix.net/details/1350x1710/S26-X000009825-Mantis-26-Backpack-Black-Side.jpg?w=120">
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="badges-row"><span class="badge badge-top">TOP MATCH</span><span class="badge badge-warn">⚠ fotos del Mantis 26</span></div>
+      <h3>Arc'teryx Mantis 16 — Black</h3>
+      <div class="price">€130</div>
+      <div class="meta">16L · Black puro · línea premium</div>
+      <div class="prefs-check">
+        <h4>Cumple tus preferences</h4>
+        <ul>
+          <li class="ok"><span class="label label-must">must</span>✓ Cap &lt;28L (16L — abajo del rango)</li>
+          <li class="ok"><span class="label label-must">must</span>✓ Chest strap (sternum confirmado)</li>
+          <li class="ok"><span class="label label-must">must</span>✓ Hipbelt (webbing simple removable — exacto lo que querés)</li>
+          <li class="ok"><span class="label label-must">must</span>✓ Color oscuro (Black puro)</li>
+          <li class="ok"><span class="label label-must">must</span>✓ Presupuesto (€130, ajustado)</li>
+          <li class="ok"><span class="label label-nice">nice</span>✓ Full black</li>
+          <li class="ok"><span class="label label-nice">nice</span>✓ Webbing simple (no padded outdoorsy)</li>
+          <li class="meh"><span class="label label-nice">nice</span>~ 16L queda chico vs Rip Curl 30L (capaz justo)</li>
+          <li class="nope"><span class="label label-nice">nice</span>✗ Bungee front (no tiene)</li>
+        </ul>
+      </div>
+      <p class="summary">El único con webbing simple removable. Cap chica vs Rip Curl 30L — verificá si te alcanza.</p>
+      <a href="https://arcteryx.com/es/en/shop/mantis-16-backpack-0636" class="url-btn" target="_blank">Ver en Arc'teryx →</a>
+    </div>
+  </article>
+
+</div>
+
+<h2>🟪 BORDERLINE</h2>
+<div class="grid">
+
+  <article class="card borderline">
+    <div class="gallery">
+      <img id="m4" class="main-img" src="https://img.thelasthunt.com/https%3A%2F%2Fs3.amazonaws.com%2Fsyncpigeon%2Falti_prod%2Fimages%2Ftnf-nf0a8gjn_tnf-black-summit-gold.jpg?w=1500&q=85" alt="TNF Universal Daypack 20L">
+      <div class="thumbs">
+        <img class="thumb active" onclick="sm('m4',this)" data-full="https://img.thelasthunt.com/https%3A%2F%2Fs3.amazonaws.com%2Fsyncpigeon%2Falti_prod%2Fimages%2Ftnf-nf0a8gjn_tnf-black-summit-gold.jpg?w=1500&q=85" src="https://img.thelasthunt.com/https%3A%2F%2Fs3.amazonaws.com%2Fsyncpigeon%2Falti_prod%2Fimages%2Ftnf-nf0a8gjn_tnf-black-summit-gold.jpg?w=120">
+        <img class="thumb" onclick="sm('m4',this)" data-full="https://img.thelasthunt.com/https%3A%2F%2Fs3.amazonaws.com%2Fsyncpigeon%2Falti_prod%2Fimages%2Ftnf-nf0a8gjn__front-tnf-black-summit-gold.jpg?w=1500&q=85" src="https://img.thelasthunt.com/https%3A%2F%2Fs3.amazonaws.com%2Fsyncpigeon%2Falti_prod%2Fimages%2Ftnf-nf0a8gjn__front-tnf-black-summit-gold.jpg?w=120">
+        <img class="thumb" onclick="sm('m4',this)" data-full="https://img.thelasthunt.com/https%3A%2F%2Fs3.amazonaws.com%2Fsyncpigeon%2Falti_prod%2Fimages%2Ftnf-nf0a8gjn__back-tnf-black-summit-gold.jpg?w=1500&q=85" src="https://img.thelasthunt.com/https%3A%2F%2Fs3.amazonaws.com%2Fsyncpigeon%2Falti_prod%2Fimages%2Ftnf-nf0a8gjn__back-tnf-black-summit-gold.jpg?w=120">
+        <img class="thumb" onclick="sm('m4',this)" data-full="https://img.thelasthunt.com/https%3A%2F%2Fs3.amazonaws.com%2Fsyncpigeon%2Falti_prod%2Fimages%2Ftnf-nf0a8gjn__detail-tnf-black-summit-gold.jpg?w=1500&q=85" src="https://img.thelasthunt.com/https%3A%2F%2Fs3.amazonaws.com%2Fsyncpigeon%2Falti_prod%2Fimages%2Ftnf-nf0a8gjn__detail-tnf-black-summit-gold.jpg?w=120">
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="badges-row"><span class="badge badge-borderline">BORDERLINE</span><span class="badge badge-warn">⚠ no full black</span></div>
+      <h3>TNF Universal Daypack 20L</h3>
+      <div class="price">~€120 <span style="font-size: 0.7rem; color: var(--text-dim);">(USD $130)</span></div>
+      <div class="meta">20L · TNF Black + Summit Gold (acentos amarillos)</div>
+      <div class="prefs-check">
+        <h4>Cumple tus preferences</h4>
+        <ul>
+          <li class="ok"><span class="label label-must">must</span>✓ Cap &lt;28L (20L)</li>
+          <li class="ok"><span class="label label-must">must</span>✓ Chest strap (sternum one-hand adjustable)</li>
+          <li class="ok"><span class="label label-must">must</span>✓ Hipbelt (removible/stowable)</li>
+          <li class="ok"><span class="label label-must">must</span>✓ Color oscuro (TNF Black base)</li>
+          <li class="ok"><span class="label label-must">must</span>✓ Presupuesto (~€120)</li>
+          <li class="nope"><span class="label label-nice">nice</span>✗ Full black (tiene acentos Summit Gold amarillos)</li>
+          <li class="nope"><span class="label label-nice">nice</span>✗ Bungee front (tiene daisy-chain webbing)</li>
+          <li class="meh"><span class="label label-nice">nice</span>? Vigencia ES no confirmada (sí en UK/FI)</li>
+        </ul>
+      </div>
+      <p class="summary">Match técnico OK pero acentos amarillos rompen el dark.</p>
+      <a href="https://www.thenorthface.com/en-gb/p/bags-and-equipment-211747/universal-daypack-20l-NF0A8GJN" class="url-btn" target="_blank">Ver en TNF UK →</a>
+    </div>
+  </article>
+
+  <article class="card borderline">
+    <div class="gallery">
+      <img id="m5" class="main-img" src="https://www.bfgcdn.com/1500_1500_90/502-6905-1111/the-north-face-basin-18-walking-backpack.jpg" alt="TNF Basin 18 Black">
+      <div class="thumbs">
+        <img class="thumb active" onclick="sm('m5',this)" data-full="https://www.bfgcdn.com/1500_1500_90/502-6905-1111/the-north-face-basin-18-walking-backpack.jpg" src="https://www.bfgcdn.com/1500_1500_90/502-6905-1111/the-north-face-basin-18-walking-backpack.jpg">
+        <img class="thumb" onclick="sm('m5',this)" data-full="https://www.bfgcdn.com/1500_1500_90/502-6905/the-north-face-basin-18-walking-backpack-detail-2.jpg" src="https://www.bfgcdn.com/1500_1500_90/502-6905/the-north-face-basin-18-walking-backpack-detail-2.jpg">
+        <img class="thumb" onclick="sm('m5',this)" data-full="https://www.bfgcdn.com/1500_1500_90/502-6905/the-north-face-basin-18-walking-backpack-detail-3.jpg" src="https://www.bfgcdn.com/1500_1500_90/502-6905/the-north-face-basin-18-walking-backpack-detail-3.jpg">
+        <img class="thumb" onclick="sm('m5',this)" data-full="https://www.bfgcdn.com/1500_1500_90/502-6905/the-north-face-basin-18-walking-backpack-detail-4.jpg" src="https://www.bfgcdn.com/1500_1500_90/502-6905/the-north-face-basin-18-walking-backpack-detail-4.jpg">
+        <img class="thumb" onclick="sm('m5',this)" data-full="https://www.bfgcdn.com/1500_1500_90/502-6905/the-north-face-basin-18-walking-backpack-detail-5.jpg" src="https://www.bfgcdn.com/1500_1500_90/502-6905/the-north-face-basin-18-walking-backpack-detail-5.jpg">
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="badges-row"><span class="badge badge-borderline">BORDERLINE</span><span class="badge badge-warn">⚠ NO hipbelt</span></div>
+      <h3>TNF Basin 18</h3>
+      <div class="price">€73 <span style="font-size: 0.7rem; color: var(--text-dim);">Deporvillage ES</span></div>
+      <div class="meta">18L · TNF Black puro</div>
+      <div class="prefs-check">
+        <h4>Cumple tus preferences</h4>
+        <ul>
+          <li class="ok"><span class="label label-must">must</span>✓ Cap &lt;28L (18L)</li>
+          <li class="ok"><span class="label label-must">must</span>✓ Chest strap</li>
+          <li class="nope"><span class="label label-must">must</span>✗ Hipbelt (NO TIENE — solo sternum)</li>
+          <li class="ok"><span class="label label-must">must</span>✓ Color oscuro (Full Black)</li>
+          <li class="ok"><span class="label label-must">must</span>✓ Presupuesto (€73, el más barato)</li>
+          <li class="ok"><span class="label label-nice">nice</span>✓ Full black</li>
+          <li class="nope"><span class="label label-nice">nice</span>✗ Bungee front (no tiene)</li>
+        </ul>
+      </div>
+      <p class="summary">El más barato pero sin hipbelt — falla un must. ¿Movemos hipbelt a nice?</p>
+      <a href="https://www.bergfreunde.eu/the-north-face-basin-18-walking-backpack/" class="url-btn" target="_blank">Ver en Bergfreunde →</a>
+    </div>
+  </article>
+
+</div>
+
+<h2>🟡 IDEAL pero descartada por cap</h2>
+<div class="grid">
+
+  <article class="card ideal-too-big">
+    <div class="gallery">
+      <img id="m6" class="main-img" src="https://www.bfgcdn.com/1500_1500_90/502-7900/the-north-face-borealis-classic-daypack.jpg" alt="TNF Borealis Classic 29L Black"
+           onerror="this.src='https://assets.thenorthface.eu/v3/NF00CF9C5IF-HERO/Borealis-Classic-Backpack--TNF-Black-HERO.jpg'; this.onerror=null;">
+    </div>
+    <div class="card-body">
+      <div class="badges-row"><span class="badge badge-ideal">IDEAL pero 28L+</span></div>
+      <h3>TNF Borealis 28L / Classic 29L</h3>
+      <div class="price">€94-125</div>
+      <div class="meta">28L (estándar) o 29L (Classic) · Black puro</div>
+      <div class="prefs-check">
+        <h4>Tu match estético ideal — pero...</h4>
+        <ul>
+          <li class="nope"><span class="label label-must">must</span>✗ Cap &lt;28L (28L o 29L → falla)</li>
+          <li class="ok"><span class="label label-must">must</span>✓ Chest strap</li>
+          <li class="ok"><span class="label label-must">must</span>✓ Hipbelt (webbing simple removable)</li>
+          <li class="ok"><span class="label label-must">must</span>✓ Color oscuro (Black puro)</li>
+          <li class="ok"><span class="label label-must">must</span>✓ Presupuesto</li>
+          <li class="ok"><span class="label label-nice">nice</span>✓ Bungee front (X-pattern)</li>
+          <li class="ok"><span class="label label-nice">nice</span>✓ Full black</li>
+          <li class="ok"><span class="label label-nice">nice</span>✓ Compression laterales</li>
+          <li class="ok"><span class="label label-nice">nice</span>✓ Carry handle</li>
+          <li class="ok"><span class="label label-bonus">bonus</span>✓ Trolley sleeve</li>
+        </ul>
+      </div>
+      <p class="summary"><strong>La que querés visualmente.</strong> Solo problema: cap. Si subís target a 28-30L (Rip Curl era 30L), entra como TOP.</p>
+      <a href="https://www.thenorthface.com/es-es/p/bolsos-and-equipamiento-211747/borealis-NF0A52SE" class="url-btn" target="_blank">Ver Borealis 28L (TNF.es) →</a>
+    </div>
+  </article>
+
+</div>
+
+<h2>🔵 PLAN B</h2>
+<div class="grid">
+
+  <article class="card planb">
+    <div class="gallery">
+      <img id="m7" class="main-img" src="https://eu.gregorypacks.com/dw/image/v2/AATF_PRD/on/demandware.static/-/Sites-gregory-product-catalog/default/dw5c441427/images/gene/prod/zoom/153059-9974_01.jpg?sw=1000&sh=1500" alt="Gregory Nano 24 Optic Black">
+      <div class="thumbs">
+        <img class="thumb active" onclick="sm('m7',this)" data-full="https://eu.gregorypacks.com/dw/image/v2/AATF_PRD/on/demandware.static/-/Sites-gregory-product-catalog/default/dw5c441427/images/gene/prod/zoom/153059-9974_01.jpg?sw=1000&sh=1500" src="https://eu.gregorypacks.com/dw/image/v2/AATF_PRD/on/demandware.static/-/Sites-gregory-product-catalog/default/dw5c441427/images/gene/prod/zoom/153059-9974_01.jpg?sw=200">
+        <img class="thumb" onclick="sm('m7',this)" data-full="https://eu.gregorypacks.com/dw/image/v2/AATF_PRD/on/demandware.static/-/Sites-gregory-product-catalog/default/dw650f62d2/images/gene/prod/zoom/153059-9974_02.jpg?sw=1000&sh=1500" src="https://eu.gregorypacks.com/dw/image/v2/AATF_PRD/on/demandware.static/-/Sites-gregory-product-catalog/default/dw650f62d2/images/gene/prod/zoom/153059-9974_02.jpg?sw=200">
+        <img class="thumb" onclick="sm('m7',this)" data-full="https://eu.gregorypacks.com/dw/image/v2/AATF_PRD/on/demandware.static/-/Sites-gregory-product-catalog/default/dw081295c7/images/gene/prod/zoom/153059-9974_03.jpg?sw=1000&sh=1500" src="https://eu.gregorypacks.com/dw/image/v2/AATF_PRD/on/demandware.static/-/Sites-gregory-product-catalog/default/dw081295c7/images/gene/prod/zoom/153059-9974_03.jpg?sw=200">
+        <img class="thumb" onclick="sm('m7',this)" data-full="https://eu.gregorypacks.com/dw/image/v2/AATF_PRD/on/demandware.static/-/Sites-gregory-product-catalog/default/dwebdd465e/images/gene/prod/zoom/153059-9974_04.jpg?sw=1000&sh=1500" src="https://eu.gregorypacks.com/dw/image/v2/AATF_PRD/on/demandware.static/-/Sites-gregory-product-catalog/default/dwebdd465e/images/gene/prod/zoom/153059-9974_04.jpg?sw=200">
+        <img class="thumb" onclick="sm('m7',this)" data-full="https://eu.gregorypacks.com/dw/image/v2/AATF_PRD/on/demandware.static/-/Sites-gregory-product-catalog/default/dw0e7c40f0/images/gene/prod/zoom/153059-9974_05.jpg?sw=1000&sh=1500" src="https://eu.gregorypacks.com/dw/image/v2/AATF_PRD/on/demandware.static/-/Sites-gregory-product-catalog/default/dw0e7c40f0/images/gene/prod/zoom/153059-9974_05.jpg?sw=200">
+        <img class="thumb" onclick="sm('m7',this)" data-full="https://eu.gregorypacks.com/dw/image/v2/AATF_PRD/on/demandware.static/-/Sites-gregory-product-catalog/default/dw8d50f952/images/gene/prod/zoom/153059-9974_06.jpg?sw=1000&sh=1500" src="https://eu.gregorypacks.com/dw/image/v2/AATF_PRD/on/demandware.static/-/Sites-gregory-product-catalog/default/dw8d50f952/images/gene/prod/zoom/153059-9974_06.jpg?sw=200">
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="badges-row"><span class="badge badge-planb">PLAN B</span></div>
       <h3>Gregory Nano 24 — Optic Black</h3>
       <div class="price">€90</div>
-      <div class="meta">24L · ~600g · Optic Black puro</div>
-      <ul class="specs">
-        <li class="ok">✓ Bungee elástica frontal con hebilla</li>
-        <li class="ok">✓ Cinturón lumbar webbing extraíble (no padded)</li>
-        <li class="ok">✓ Compresión hebillas rápidas</li>
-        <li class="ok">✓ Portabotellas mesh laterales</li>
-        <li class="ok">✓ Sleeve laptop interno</li>
-        <li class="ok">✓ Chest strap</li>
-      </ul>
-      <p class="summary">Borealis al 100% pero en 24L. La más barata de las top.</p>
+      <div class="meta">24L · 600g · Optic Black puro</div>
+      <div class="prefs-check">
+        <h4>Cumple casi todo — pero estética no convence</h4>
+        <ul>
+          <li class="ok"><span class="label label-must">must</span>✓ Cap &lt;28L (24L)</li>
+          <li class="ok"><span class="label label-must">must</span>✓ Chest strap</li>
+          <li class="ok"><span class="label label-must">must</span>✓ Hipbelt (webbing extraíble — lo que querés)</li>
+          <li class="ok"><span class="label label-must">must</span>✓ Color oscuro (Optic Black)</li>
+          <li class="ok"><span class="label label-must">must</span>✓ Presupuesto (€90)</li>
+          <li class="ok"><span class="label label-nice">nice</span>✓ Bungee front</li>
+          <li class="ok"><span class="label label-nice">nice</span>✓ Full black</li>
+          <li class="ok"><span class="label label-nice">nice</span>✓ Compression hebillas</li>
+          <li class="nope"><span class="label label-must">must</span>✗ Estética — no te gusta visualmente</li>
+        </ul>
+      </div>
+      <p class="summary">Match técnico perfecto. Estética no convence — Plan B.</p>
       <a href="https://eu.gregorypacks.com/es-es/-nano-24--optic-black/153059-9974.html" class="url-btn" target="_blank">Ver en Gregory →</a>
     </div>
   </article>
 
-</div>
-
-<h2>✅ PASS / BORDERLINE en rango (≤€135)</h2>
-<div class="grid">
-
-  <article class="card">
+  <article class="card planb">
     <div class="gallery">
-      <img id="m2" class="main-img" src="https://assets.thenorthface.eu/images/t_img/f_auto,h_1300,e_sharpen:60,w_1300/dpr_2.0/v1768563576/NF0A87C8NOW-HERO/Trail-Lite-24Litre-Backpack--TNF-Granite-GreySummit-NavyDust-Orange-HERO.jpg" alt="TNF Trail Lite 24L">
+      <img id="m8" class="main-img" src="https://images-dynamic-arcteryx.imgix.net/details/1350x1710/S26-X000009825-Mantis-26-Backpack-Black-Front.jpg" alt="Arc'teryx Mantis 26 Black">
       <div class="thumbs">
-        <img class="thumb active" onclick="sm('m2',this)" data-full="https://assets.thenorthface.eu/images/t_img/f_auto,h_1300,e_sharpen:60,w_1300/dpr_2.0/v1768563576/NF0A87C8NOW-HERO/Trail-Lite-24Litre-Backpack--TNF-Granite-GreySummit-NavyDust-Orange-HERO.jpg" src="https://assets.thenorthface.eu/images/t_img/f_auto,h_120,w_120/v1768563576/NF0A87C8NOW-HERO/Trail-Lite-24Litre-Backpack--TNF-Granite-GreySummit-NavyDust-Orange-HERO.jpg">
-        <img class="thumb" onclick="sm('m2',this)" data-full="https://assets.thenorthface.eu/images/t_img/f_auto,h_1300,e_sharpen:60,w_1300/dpr_2.0/v1768563448/NF0A87C8NOW-ALT1/Trail-Lite-24Litre-Backpack--TNF-Granite-GreySummit-NavyDust-Orange-ALT1.jpg" src="https://assets.thenorthface.eu/images/t_img/f_auto,h_120,w_120/v1768563448/NF0A87C8NOW-ALT1/Trail-Lite-24Litre-Backpack--TNF-Granite-GreySummit-NavyDust-Orange-ALT1.jpg">
-        <img class="thumb" onclick="sm('m2',this)" data-full="https://assets.thenorthface.eu/images/t_img/f_auto,h_1300,e_sharpen:60,w_1300/dpr_2.0/v1768563568/NF0A87C8NOW-ALT2/Trail-Lite-24Litre-Backpack--TNF-Granite-GreySummit-NavyDust-Orange-ALT2.jpg" src="https://assets.thenorthface.eu/images/t_img/f_auto,h_120,w_120/v1768563568/NF0A87C8NOW-ALT2/Trail-Lite-24Litre-Backpack--TNF-Granite-GreySummit-NavyDust-Orange-ALT2.jpg">
-        <img class="thumb" onclick="sm('m2',this)" data-full="https://assets.thenorthface.eu/images/t_img/f_auto,h_1300,e_sharpen:60,w_1300/dpr_2.0/v1768563571/NF0A87C8NOW-ALT3/Trail-Lite-24Litre-Backpack--TNF-Granite-GreySummit-NavyDust-Orange-ALT3.jpg" src="https://assets.thenorthface.eu/images/t_img/f_auto,h_120,w_120/v1768563571/NF0A87C8NOW-ALT3/Trail-Lite-24Litre-Backpack--TNF-Granite-GreySummit-NavyDust-Orange-ALT3.jpg">
-        <img class="thumb" onclick="sm('m2',this)" data-full="https://assets.thenorthface.eu/images/t_img/f_auto,h_1300,e_sharpen:60,w_1300/dpr_2.0/v1768563574/NF0A87C8NOW-ALT4/Trail-Lite-24Litre-Backpack--TNF-Granite-GreySummit-NavyDust-Orange-ALT4.jpg" src="https://assets.thenorthface.eu/images/t_img/f_auto,h_120,w_120/v1768563574/NF0A87C8NOW-ALT4/Trail-Lite-24Litre-Backpack--TNF-Granite-GreySummit-NavyDust-Orange-ALT4.jpg">
-        <img class="thumb" onclick="sm('m2',this)" data-full="https://assets.thenorthface.eu/images/t_img/f_auto,h_1300,e_sharpen:60,w_1300/dpr_2.0/v1768563575/NF0A87C8NOW-ALT5/Trail-Lite-24Litre-Backpack--TNF-Granite-GreySummit-NavyDust-Orange-ALT5.jpg" src="https://assets.thenorthface.eu/images/t_img/f_auto,h_120,w_120/v1768563575/NF0A87C8NOW-ALT5/Trail-Lite-24Litre-Backpack--TNF-Granite-GreySummit-NavyDust-Orange-ALT5.jpg">
+        <img class="thumb active" onclick="sm('m8',this)" data-full="https://images-dynamic-arcteryx.imgix.net/details/1350x1710/S26-X000009825-Mantis-26-Backpack-Black-Front.jpg" src="https://images-dynamic-arcteryx.imgix.net/details/1350x1710/S26-X000009825-Mantis-26-Backpack-Black-Front.jpg?w=120">
+        <img class="thumb" onclick="sm('m8',this)" data-full="https://images-dynamic-arcteryx.imgix.net/details/1350x1710/S26-X000009825-Mantis-26-Backpack-Black-Back-View.jpg" src="https://images-dynamic-arcteryx.imgix.net/details/1350x1710/S26-X000009825-Mantis-26-Backpack-Black-Back-View.jpg?w=120">
+        <img class="thumb" onclick="sm('m8',this)" data-full="https://images-dynamic-arcteryx.imgix.net/details/1350x1710/S26-X000009825-Mantis-26-Backpack-Black-Side.jpg" src="https://images-dynamic-arcteryx.imgix.net/details/1350x1710/S26-X000009825-Mantis-26-Backpack-Black-Side.jpg?w=120">
+        <img class="thumb" onclick="sm('m8',this)" data-full="https://images-dynamic-arcteryx.imgix.net/details/1350x1710/S26-X000009825-Mantis-26-Backpack-Black-Full-Body.jpg" src="https://images-dynamic-arcteryx.imgix.net/details/1350x1710/S26-X000009825-Mantis-26-Backpack-Black-Full-Body.jpg?w=120">
       </div>
     </div>
     <div class="card-body">
-      <div><span class="badge badge-pass">PASS — TNF 24L</span><span class="badge badge-warn">⚠ no full black</span></div>
-      <h3>TNF Trail Lite 24L</h3>
-      <div class="price">€125</div>
-      <div class="meta">24L · 760g · Granite Grey + Summit Navy + Dust Orange</div>
-      <ul class="specs">
-        <li class="ok">✓ Cinturón lumbar acolchado con bolsillos</li>
-        <li class="ok">✓ Compresión lateral</li>
-        <li class="ok">✓ Hidratación interna</li>
-        <li class="ok">✓ Chest strap</li>
-        <li class="meh">~ Hipbelt acolchado (más outdoorsy)</li>
-        <li class="nope">✗ Sin black puro — solo color combo</li>
-      </ul>
-      <p class="summary">Misma marca del Borealis, en 24L. Trade-off: padded hipbelt + color no-black.</p>
-      <a href="https://www.thenorthface.com/es-es/p/bolsos-and-equipamiento-211747/mochila-trail-lite-de-24-litros-NF0A87C8?color=NOW" class="url-btn" target="_blank">Ver en TNF →</a>
+      <div class="badges-row"><span class="badge badge-planb">PLAN B</span><span class="badge badge-warn">⚠ NO hipbelt + grande</span></div>
+      <h3>Arc'teryx Mantis 26 — Black</h3>
+      <div class="price">€160 <span style="font-size: 0.7rem; color: var(--text-dim);">(soñada)</span></div>
+      <div class="meta">26L · Black puro · 8 fotos incl. modelo</div>
+      <div class="prefs-check">
+        <h4>Premium pero falla hipbelt</h4>
+        <ul>
+          <li class="ok"><span class="label label-must">must</span>✓ Cap &lt;28L (26L, casi al límite)</li>
+          <li class="ok"><span class="label label-must">must</span>✓ Chest strap (sternum)</li>
+          <li class="nope"><span class="label label-must">must</span>✗ Hipbelt (NO tiene — solo sternum)</li>
+          <li class="ok"><span class="label label-must">must</span>✓ Color oscuro (Black puro)</li>
+          <li class="nope"><span class="label label-must">must</span>✗ Presupuesto (€160 sobre €135)</li>
+          <li class="ok"><span class="label label-nice">nice</span>✓ Full black</li>
+          <li class="nope"><span class="label label-nice">nice</span>✗ Bungee front</li>
+          <li class="meh"><span class="label label-nice">nice</span>~ "Parece grande" según vos</li>
+        </ul>
+      </div>
+      <p class="summary">Premium build, soñada visual, pero sin hipbelt + sobre presupuesto + sentís grande.</p>
+      <a href="https://arcteryx.com/shop/mantis-26-backpack-0643" class="url-btn" target="_blank">Ver en Arc'teryx →</a>
     </div>
   </article>
 
-  <article class="card">
+  <article class="card planb">
     <div class="gallery">
-      <img id="m3" class="main-img" src="https://www.jack-wolfskin.com/dw/image/v2/AAQL_PRD/on/demandware.static/-/Sites-22021_JW_Master/default/dw4c711b81/large/A65974_6350_1_e100-astro-vent-24-phantom.jpg?sw=1024&sh=1024&sfrm=png" alt="JW Astro Vent 24 Phantom">
+      <img id="m9" class="main-img" src="https://cdn.dam.salomon.com/31f1b9aa-00bb-4ba5-bc76-b380009f1b89/LC2855800/PNG-2000px-max-72dpi.png?width=1200&fit=cover&optimize=low&bg-color=f5f5f5&format=pjpg&auto=avif&crop=4%3A5" alt="Salomon Trailblazer 20">
       <div class="thumbs">
-        <img class="thumb active" onclick="sm('m3',this)" data-full="https://www.jack-wolfskin.com/dw/image/v2/AAQL_PRD/on/demandware.static/-/Sites-22021_JW_Master/default/dw4c711b81/large/A65974_6350_1_e100-astro-vent-24-phantom.jpg?sw=1024&sh=1024&sfrm=png" src="https://www.jack-wolfskin.com/dw/image/v2/AAQL_PRD/on/demandware.static/-/Sites-22021_JW_Master/default/dw4c711b81/large/A65974_6350_1_e100-astro-vent-24-phantom.jpg?sw=120&sh=120&sfrm=png">
-        <img class="thumb" onclick="sm('m3',this)" data-full="https://www.jack-wolfskin.com/dw/image/v2/AAQL_PRD/on/demandware.static/-/Sites-22021_JW_Master/default/dw78f38592/large/A65974_6350_9-e120-astro-vent-24-phantom.jpg?sw=1024&sh=1024&sfrm=png" src="https://www.jack-wolfskin.com/dw/image/v2/AAQL_PRD/on/demandware.static/-/Sites-22021_JW_Master/default/dw78f38592/large/A65974_6350_9-e120-astro-vent-24-phantom.jpg?sw=120&sh=120&sfrm=png">
-        <img class="thumb" onclick="sm('m3',this)" data-full="https://www.jack-wolfskin.com/dw/image/v2/AAQL_PRD/on/demandware.static/-/Sites-22021_JW_Master/default/dw618bb13e/large/A65974_6350_9-e110-astro-vent-24-phantom.jpg?sw=1024&sh=1024&sfrm=png" src="https://www.jack-wolfskin.com/dw/image/v2/AAQL_PRD/on/demandware.static/-/Sites-22021_JW_Master/default/dw618bb13e/large/A65974_6350_9-e110-astro-vent-24-phantom.jpg?sw=120&sh=120&sfrm=png">
-        <img class="thumb" onclick="sm('m3',this)" data-full="https://www.jack-wolfskin.com/dw/image/v2/AAQL_PRD/on/demandware.static/-/Sites-22021_JW_Master/default/dw5965a183/large/A65974_6350_9-e125-astro-vent-24-phantom.jpg?sw=1024&sh=1024&sfrm=png" src="https://www.jack-wolfskin.com/dw/image/v2/AAQL_PRD/on/demandware.static/-/Sites-22021_JW_Master/default/dw5965a183/large/A65974_6350_9-e125-astro-vent-24-phantom.jpg?sw=120&sh=120&sfrm=png">
-        <img class="thumb" onclick="sm('m3',this)" data-full="https://www.jack-wolfskin.com/dw/image/v2/AAQL_PRD/on/demandware.static/-/Sites-22021_JW_Master/default/dw4dcf921d/large/A65974_6350_3-me120-astro-vent-24-phantom.jpg?sw=1024&sh=1024&sfrm=png" src="https://www.jack-wolfskin.com/dw/image/v2/AAQL_PRD/on/demandware.static/-/Sites-22021_JW_Master/default/dw4dcf921d/large/A65974_6350_3-me120-astro-vent-24-phantom.jpg?sw=120&sh=120&sfrm=png">
+        <img class="thumb active" onclick="sm('m9',this)" data-full="https://cdn.dam.salomon.com/31f1b9aa-00bb-4ba5-bc76-b380009f1b89/LC2855800/PNG-2000px-max-72dpi.png?width=1200&fit=cover&optimize=low&bg-color=f5f5f5&format=pjpg&auto=avif&crop=4%3A5" src="https://cdn.dam.salomon.com/31f1b9aa-00bb-4ba5-bc76-b380009f1b89/LC2855800/PNG-2000px-max-72dpi.png?width=200&fit=cover&optimize=low&bg-color=f5f5f5&format=pjpg&auto=avif">
+        <img class="thumb" onclick="sm('m9',this)" data-full="https://cdn.dam.salomon.com/d20e2650-dfa3-47b4-bfe7-b380009f18a9/LC2855800/PNG-2000px-max-72dpi.png?width=1200&fit=cover&optimize=low&bg-color=f5f5f5&format=pjpg&auto=avif&crop=4%3A5" src="https://cdn.dam.salomon.com/d20e2650-dfa3-47b4-bfe7-b380009f18a9/LC2855800/PNG-2000px-max-72dpi.png?width=200&fit=cover&optimize=low&bg-color=f5f5f5&format=pjpg&auto=avif">
+        <img class="thumb" onclick="sm('m9',this)" data-full="https://cdn.dam.salomon.com/c66626d0-acf1-4a0b-a641-b340008c6b22/LC2855800/PNG-2000px-max-72dpi.png?width=1200&fit=cover&optimize=low&bg-color=f5f5f5&format=pjpg&auto=avif" src="https://cdn.dam.salomon.com/c66626d0-acf1-4a0b-a641-b340008c6b22/LC2855800/PNG-2000px-max-72dpi.png?width=200&fit=cover&optimize=low&bg-color=f5f5f5&format=pjpg&auto=avif">
+        <img class="thumb" onclick="sm('m9',this)" data-full="https://cdn.dam.salomon.com/d63c9252-fe36-4166-babc-b37f00ed768e/LC2855800/PNG-2000px-max-72dpi.png?width=1200&fit=cover&optimize=low&bg-color=f5f5f5&format=pjpg&auto=avif" src="https://cdn.dam.salomon.com/d63c9252-fe36-4166-babc-b37f00ed768e/LC2855800/PNG-2000px-max-72dpi.png?width=200&fit=cover&optimize=low&bg-color=f5f5f5&format=pjpg&auto=avif">
       </div>
     </div>
     <div class="card-body">
-      <div><span class="badge badge-pass">PASS — Outdoor casual 24L</span></div>
-      <h3>Jack Wolfskin Astro Vent 24 — Phantom</h3>
-      <div class="price">€110</div>
-      <div class="meta">24L · Phantom (gris muy oscuro)</div>
-      <ul class="specs">
-        <li class="ok">✓ AEROVENT CORE ventilación trasera</li>
-        <li class="ok">✓ Hipbelt acolchado</li>
-        <li class="ok">✓ Chest strap</li>
-        <li class="ok">✓ Rain cover incluido</li>
-        <li class="ok">✓ Reflective details</li>
-        <li class="meh">~ Hipbelt padded (más outdoorsy)</li>
-      </ul>
-      <p class="summary">Outdoor con look estilizado. Última foto es modelo puesta.</p>
-      <a href="https://www.jack-wolfskin.com/astro-vent-24/A65974_6350_OS.html" class="url-btn" target="_blank">Ver en JW →</a>
-    </div>
-  </article>
-
-  <article class="card">
-    <div class="gallery">
-      <img id="m4" class="main-img" src="https://www.jack-wolfskin.com/dw/image/v2/AAQL_PRD/on/demandware.static/-/Sites-22021_JW_Master/default/dwa80ae389/large/A64003_C0412_1_e100-velocity-20-midnight-sky.jpg?sw=1024&sh=1024&sfrm=png" alt="JW Velocity 20 Midnight Sky">
-      <div class="thumbs">
-        <img class="thumb active" onclick="sm('m4',this)" data-full="https://www.jack-wolfskin.com/dw/image/v2/AAQL_PRD/on/demandware.static/-/Sites-22021_JW_Master/default/dwa80ae389/large/A64003_C0412_1_e100-velocity-20-midnight-sky.jpg?sw=1024&sh=1024&sfrm=png" src="https://www.jack-wolfskin.com/dw/image/v2/AAQL_PRD/on/demandware.static/-/Sites-22021_JW_Master/default/dwa80ae389/large/A64003_C0412_1_e100-velocity-20-midnight-sky.jpg?sw=120&sh=120&sfrm=png">
-        <img class="thumb" onclick="sm('m4',this)" data-full="https://www.jack-wolfskin.com/dw/image/v2/AAQL_PRD/on/demandware.static/-/Sites-22021_JW_Master/default/dw84745e9c/large/A64003_C0412_9-e120-velocity-20-midnight-sky.jpg?sw=1024&sh=1024&sfrm=png" src="https://www.jack-wolfskin.com/dw/image/v2/AAQL_PRD/on/demandware.static/-/Sites-22021_JW_Master/default/dw84745e9c/large/A64003_C0412_9-e120-velocity-20-midnight-sky.jpg?sw=120&sh=120&sfrm=png">
-        <img class="thumb" onclick="sm('m4',this)" data-full="https://www.jack-wolfskin.com/dw/image/v2/AAQL_PRD/on/demandware.static/-/Sites-22021_JW_Master/default/dwf09871ad/large/A64003_C0412_9-e110-velocity-20-midnight-sky.jpg?sw=1024&sh=1024&sfrm=png" src="https://www.jack-wolfskin.com/dw/image/v2/AAQL_PRD/on/demandware.static/-/Sites-22021_JW_Master/default/dwf09871ad/large/A64003_C0412_9-e110-velocity-20-midnight-sky.jpg?sw=120&sh=120&sfrm=png">
-        <img class="thumb" onclick="sm('m4',this)" data-full="https://www.jack-wolfskin.com/dw/image/v2/AAQL_PRD/on/demandware.static/-/Sites-22021_JW_Master/default/dw9fc79fe6/large/A64003_C0412_9-e125-velocity-20-midnight-sky.jpg?sw=1024&sh=1024&sfrm=png" src="https://www.jack-wolfskin.com/dw/image/v2/AAQL_PRD/on/demandware.static/-/Sites-22021_JW_Master/default/dw9fc79fe6/large/A64003_C0412_9-e125-velocity-20-midnight-sky.jpg?sw=120&sh=120&sfrm=png">
-        <img class="thumb" onclick="sm('m4',this)" data-full="https://www.jack-wolfskin.com/dw/image/v2/AAQL_PRD/on/demandware.static/-/Sites-22021_JW_Master/default/dw7624e1d7/large/A64003_C0412_3-me120-velocity-20-midnight-sky.jpg?sw=1024&sh=1024&sfrm=png" src="https://www.jack-wolfskin.com/dw/image/v2/AAQL_PRD/on/demandware.static/-/Sites-22021_JW_Master/default/dw7624e1d7/large/A64003_C0412_3-me120-velocity-20-midnight-sky.jpg?sw=120&sh=120&sfrm=png">
-      </div>
-    </div>
-    <div class="card-body">
-      <div><span class="badge badge-pass">PASS — Urbano 20L</span></div>
-      <h3>JW Velocity 20 — Midnight Sky</h3>
-      <div class="price">€100</div>
-      <div class="meta">20L · Midnight Sky (azul oscuro casi negro)</div>
-      <ul class="specs">
-        <li class="ok">✓ Hipbelt removible</li>
-        <li class="ok">✓ AEROSHAPE CORE suspension</li>
-        <li class="ok">✓ Hydration ready + LED tail clip</li>
-        <li class="ok">✓ External stuff panel</li>
-        <li class="ok">✓ Chest strap</li>
-        <li class="meh">~ 20L (chico para 20% caminata + 10% travel)</li>
-      </ul>
-      <p class="summary">Hipbelt removible exacto. Última foto es modelo puesta.</p>
-      <a href="https://www.jack-wolfskin.com/velocity-20/A64003_C0412_OS.html" class="url-btn" target="_blank">Ver en JW →</a>
-    </div>
-  </article>
-
-  <article class="card">
-    <div class="gallery">
-      <img id="m5" class="main-img" src="https://contents.mediadecathlon.com/p2204688/k$354e0a404ed9e214f8013c7c22f38f11/picture.jpg?format=auto&f=3000x0" alt="Decathlon NH Escape 500 23L">
-      <div class="thumbs">
-        <img class="thumb active" onclick="sm('m5',this)" data-full="https://contents.mediadecathlon.com/p2204688/k$354e0a404ed9e214f8013c7c22f38f11/picture.jpg?format=auto&f=3000x0" src="https://contents.mediadecathlon.com/p2204688/k$354e0a404ed9e214f8013c7c22f38f11/picture.jpg?format=auto&f=120x120">
-        <img class="thumb" onclick="sm('m5',this)" data-full="https://contents.mediadecathlon.com/p2204691/k$885bc8c86748f59d0274bc26450a3b7e/picture.jpg?format=auto&f=3000x0" src="https://contents.mediadecathlon.com/p2204691/k$885bc8c86748f59d0274bc26450a3b7e/picture.jpg?format=auto&f=120x120">
-        <img class="thumb" onclick="sm('m5',this)" data-full="https://contents.mediadecathlon.com/p2204694/k$3a60d49e851e24ecead7391922e574a3/picture.jpg?format=auto&f=3000x0" src="https://contents.mediadecathlon.com/p2204694/k$3a60d49e851e24ecead7391922e574a3/picture.jpg?format=auto&f=120x120">
-        <img class="thumb" onclick="sm('m5',this)" data-full="https://contents.mediadecathlon.com/p2204701/k$9dc959862ffc0666e8b9d74dcdecbf90/picture.jpg?format=auto&f=3000x0" src="https://contents.mediadecathlon.com/p2204701/k$9dc959862ffc0666e8b9d74dcdecbf90/picture.jpg?format=auto&f=120x120">
-        <img class="thumb" onclick="sm('m5',this)" data-full="https://contents.mediadecathlon.com/p2204692/k$4405b17df5f3c6056815614d2ef1aefb/picture.jpg?format=auto&f=3000x0" src="https://contents.mediadecathlon.com/p2204692/k$4405b17df5f3c6056815614d2ef1aefb/picture.jpg?format=auto&f=120x120">
-        <img class="thumb" onclick="sm('m5',this)" data-full="https://contents.mediadecathlon.com/p2876605/k$51626c23e85be949f30f53940cc8903d/picture.jpg?format=auto&f=3000x0" src="https://contents.mediadecathlon.com/p2876605/k$51626c23e85be949f30f53940cc8903d/picture.jpg?format=auto&f=120x120">
-      </div>
-    </div>
-    <div class="card-body">
-      <div><span class="badge badge-pass">PASS — Budget 23L</span></div>
-      <h3>Quechua NH Escape 500 23L</h3>
-      <div class="price">€37,99</div>
-      <div class="meta">23L · 46×28×22 cm cabin · Black/Asfalto</div>
-      <ul class="specs">
-        <li class="ok">✓ Hipbelt Duralon buckle</li>
-        <li class="ok">✓ Chest strap rail ajustable</li>
-        <li class="ok">✓ Sleeve PC 15"</li>
-        <li class="ok">✓ 5 bolsillos cremallera</li>
-        <li class="ok">✓ 2 portabotellas 0.8L</li>
-        <li class="ok">✓ Cabin-luggage compliant</li>
-        <li class="meh">~ Marca: Decathlon (no premium)</li>
-      </ul>
-      <p class="summary">El budget-king. Cumple casi todo a 1/3 del precio.</p>
-      <a href="https://www.decathlon.es/es/p/mochila-de-montana-y-senderismo-23l-quechua-nh-escape-500-equipaje-de-mano/334344/c43c382m8649339" class="url-btn" target="_blank">Ver en Decathlon →</a>
-    </div>
-  </article>
-
-  <article class="card">
-    <div class="gallery">
-      <img id="m6" class="main-img" src="https://cdn.dam.salomon.com/31f1b9aa-00bb-4ba5-bc76-b380009f1b89/LC2855800/PNG-2000px-max-72dpi.png?width=1200&fit=cover&optimize=low&bg-color=f5f5f5&format=pjpg&auto=avif&crop=4%3A5" alt="Salomon Trailblazer 20">
-      <div class="thumbs">
-        <img class="thumb active" onclick="sm('m6',this)" data-full="https://cdn.dam.salomon.com/31f1b9aa-00bb-4ba5-bc76-b380009f1b89/LC2855800/PNG-2000px-max-72dpi.png?width=1200&fit=cover&optimize=low&bg-color=f5f5f5&format=pjpg&auto=avif&crop=4%3A5" src="https://cdn.dam.salomon.com/31f1b9aa-00bb-4ba5-bc76-b380009f1b89/LC2855800/PNG-2000px-max-72dpi.png?width=200&fit=cover&optimize=low&bg-color=f5f5f5&format=pjpg&auto=avif">
-        <img class="thumb" onclick="sm('m6',this)" data-full="https://cdn.dam.salomon.com/d20e2650-dfa3-47b4-bfe7-b380009f18a9/LC2855800/PNG-2000px-max-72dpi.png?width=1200&fit=cover&optimize=low&bg-color=f5f5f5&format=pjpg&auto=avif&crop=4%3A5" src="https://cdn.dam.salomon.com/d20e2650-dfa3-47b4-bfe7-b380009f18a9/LC2855800/PNG-2000px-max-72dpi.png?width=200&fit=cover&optimize=low&bg-color=f5f5f5&format=pjpg&auto=avif">
-        <img class="thumb" onclick="sm('m6',this)" data-full="https://cdn.dam.salomon.com/c66626d0-acf1-4a0b-a641-b340008c6b22/LC2855800/PNG-2000px-max-72dpi.png?width=1200&fit=cover&optimize=low&bg-color=f5f5f5&format=pjpg&auto=avif" src="https://cdn.dam.salomon.com/c66626d0-acf1-4a0b-a641-b340008c6b22/LC2855800/PNG-2000px-max-72dpi.png?width=200&fit=cover&optimize=low&bg-color=f5f5f5&format=pjpg&auto=avif">
-        <img class="thumb" onclick="sm('m6',this)" data-full="https://cdn.dam.salomon.com/d63c9252-fe36-4166-babc-b37f00ed768e/LC2855800/PNG-2000px-max-72dpi.png?width=1200&fit=cover&optimize=low&bg-color=f5f5f5&format=pjpg&auto=avif" src="https://cdn.dam.salomon.com/d63c9252-fe36-4166-babc-b37f00ed768e/LC2855800/PNG-2000px-max-72dpi.png?width=200&fit=cover&optimize=low&bg-color=f5f5f5&format=pjpg&auto=avif">
-      </div>
-    </div>
-    <div class="card-body">
-      <div><span class="badge badge-pass">PASS — Liviana 20L</span><span class="badge badge-warn">⚠ no full black</span></div>
+      <div class="badges-row"><span class="badge badge-planb">PLAN B</span><span class="badge badge-warn">⚠ no full black</span></div>
       <h3>Salomon Trailblazer 20 — Mustang/Black Coffee</h3>
       <div class="price">€75</div>
-      <div class="meta">20L · Mustang/Black Coffee (marrón con detalles negros)</div>
-      <ul class="specs">
-        <li class="ok">✓ Hipbelt removible con bolsillos mesh</li>
-        <li class="ok">✓ Chest strap elastic ajustable</li>
-        <li class="ok">✓ Laptop hanging sleeve 15"</li>
-        <li class="ok">✓ 3D light belt</li>
-        <li class="meh">~ Color Black Coffee es marrón con detalles negros</li>
-      </ul>
-      <p class="summary">Verificá tono real en tienda — no es black puro.</p>
+      <div class="meta">20L · Mustang/Black Coffee (marrón con detalles)</div>
+      <div class="prefs-check">
+        <h4>Cumple specs, color no es full black</h4>
+        <ul>
+          <li class="ok"><span class="label label-must">must</span>✓ Cap &lt;28L (20L)</li>
+          <li class="ok"><span class="label label-must">must</span>✓ Chest strap</li>
+          <li class="ok"><span class="label label-must">must</span>✓ Hipbelt (padded removable)</li>
+          <li class="meh"><span class="label label-must">must</span>~ Color oscuro (marrón con negro, no full black)</li>
+          <li class="ok"><span class="label label-must">must</span>✓ Presupuesto (€75)</li>
+          <li class="nope"><span class="label label-nice">nice</span>✗ Full black (no es)</li>
+          <li class="meh"><span class="label label-nice">nice</span>~ Hipbelt PADDED (más outdoorsy)</li>
+        </ul>
+      </div>
+      <p class="summary">Match técnico OK pero color "Black Coffee" es marrón.</p>
       <a href="https://www.salomon.com/es-es/product/trailblazer-20-lc12606/LC2855800" class="url-btn" target="_blank">Ver en Salomon →</a>
     </div>
   </article>
 
 </div>
 
-<h2>💎 SOÑADAS (€135-€200) — sobre presupuesto</h2>
-<div class="grid">
-
-  <article class="card">
-    <div class="gallery">
-      <img id="m7" class="main-img" src="https://www.vaude.com/media/catalog/product/cache/207e23213cf636ccdef205098cf3c8a3/4/8/48650_334_6__486503340000_edd47199.jpg" alt="Vaude Wizard 24+4">
-      <div class="thumbs">
-        <img class="thumb active" onclick="sm('m7',this)" data-full="https://www.vaude.com/media/catalog/product/cache/207e23213cf636ccdef205098cf3c8a3/4/8/48650_334_6__486503340000_edd47199.jpg" src="https://www.vaude.com/media/catalog/product/cache/207e23213cf636ccdef205098cf3c8a3/4/8/48650_334_6__486503340000_edd47199.jpg">
-        <img class="thumb" onclick="sm('m7',this)" data-full="https://www.vaude.com/media/catalog/product/cache/207e23213cf636ccdef205098cf3c8a3/4/8/48650_334_b_6__486503340000_dfc9ca77.jpg" src="https://www.vaude.com/media/catalog/product/cache/207e23213cf636ccdef205098cf3c8a3/4/8/48650_334_b_6__486503340000_dfc9ca77.jpg">
-        <img class="thumb" onclick="sm('m7',this)" data-full="https://www.vaude.com/media/catalog/product/cache/207e23213cf636ccdef205098cf3c8a3/4/8/48650_334_d_1_6__486503340000_35954c8d.jpg" src="https://www.vaude.com/media/catalog/product/cache/207e23213cf636ccdef205098cf3c8a3/4/8/48650_334_d_1_6__486503340000_35954c8d.jpg">
-        <img class="thumb" onclick="sm('m7',this)" data-full="https://www.vaude.com/media/catalog/product/cache/207e23213cf636ccdef205098cf3c8a3/4/8/48650_334_d_4_6__486503340000_83401d48.jpg" src="https://www.vaude.com/media/catalog/product/cache/207e23213cf636ccdef205098cf3c8a3/4/8/48650_334_d_4_6__486503340000_83401d48.jpg">
-        <img class="thumb" onclick="sm('m7',this)" data-full="https://www.vaude.com/media/catalog/product/cache/207e23213cf636ccdef205098cf3c8a3/4/8/48650_334_d_7_6__486503340000_155aa25e.jpg" src="https://www.vaude.com/media/catalog/product/cache/207e23213cf636ccdef205098cf3c8a3/4/8/48650_334_d_7_6__486503340000_155aa25e.jpg">
-      </div>
-    </div>
-    <div class="card-body">
-      <div><span class="badge badge-soñada">SOÑADA — €158</span><span class="badge badge-warn">⚠ hipbelt muy padded</span></div>
-      <h3>Vaude Wizard 24+4 — Black</h3>
-      <div class="price">€158</div>
-      <div class="meta">24+4L expandible · alemán · recycled</div>
-      <ul class="specs">
-        <li class="ok">✓ Expandible 24→28L</li>
-        <li class="ok">✓ Hipbelt acolchado completo con bolsillo zip</li>
-        <li class="ok">✓ Compresión + bottle pockets + pole holder</li>
-        <li class="ok">✓ Hidratación + rain cover</li>
-        <li class="nope">✗ Hipbelt muy outdoorsy (NO webbing simple)</li>
-      </ul>
-      <p class="summary">El más serio del lote. Pero hipbelt acolchado contradice tu preferencia visual.</p>
-      <a href="https://www.vaude.com/int/en/48650-wizard-24-4-liter-hiking-backpack.html?size=13424&colour=1294" class="url-btn" target="_blank">Ver en Vaude →</a>
-    </div>
-  </article>
-
-  <article class="card">
-    <div class="gallery">
-      <img id="m8" class="main-img" src="https://shop.tropicfeel.com/cdn/shop/files/Backpacks-Hive-Backpack-AW24-Core-Black-1.jpg?v=1722869891" alt="Tropicfeel Hive Core Black">
-      <div class="thumbs">
-        <img class="thumb active" onclick="sm('m8',this)" data-full="https://shop.tropicfeel.com/cdn/shop/files/Backpacks-Hive-Backpack-AW24-Core-Black-1.jpg?v=1722869891" src="https://shop.tropicfeel.com/cdn/shop/files/Backpacks-Hive-Backpack-AW24-Core-Black-1.jpg?v=1722869891&width=120">
-        <img class="thumb" onclick="sm('m8',this)" data-full="https://shop.tropicfeel.com/cdn/shop/files/Backpacks-Hive-Backpack-AW24-Core-Black-2.jpg?v=1722869945" src="https://shop.tropicfeel.com/cdn/shop/files/Backpacks-Hive-Backpack-AW24-Core-Black-2.jpg?v=1722869945&width=120">
-        <img class="thumb" onclick="sm('m8',this)" data-full="https://shop.tropicfeel.com/cdn/shop/files/Backpacks-Hive-Backpack-AW24-Core-Black-3_71442ec2-9552-4822-b503-583073520d49.jpg?v=1722344248" src="https://shop.tropicfeel.com/cdn/shop/files/Backpacks-Hive-Backpack-AW24-Core-Black-3_71442ec2-9552-4822-b503-583073520d49.jpg?v=1722344248&width=120">
-        <img class="thumb" onclick="sm('m8',this)" data-full="https://shop.tropicfeel.com/cdn/shop/files/Backpacks-Hive-Backpack-AW24-Core-Black-6.jpg?v=1722872623" src="https://shop.tropicfeel.com/cdn/shop/files/Backpacks-Hive-Backpack-AW24-Core-Black-6.jpg?v=1722872623&width=120">
-        <img class="thumb" onclick="sm('m8',this)" data-full="https://shop.tropicfeel.com/cdn/shop/files/2411257U009Backpacks-Hive-Backpack-AW24-Core-Black-4.jpg?v=1770795809" src="https://shop.tropicfeel.com/cdn/shop/files/2411257U009Backpacks-Hive-Backpack-AW24-Core-Black-4.jpg?v=1770795809&width=120">
-        <img class="thumb" onclick="sm('m8',this)" data-full="https://shop.tropicfeel.com/cdn/shop/files/Hive-Core-Black-hero-banner-4-5.jpg?v=1757944854" src="https://shop.tropicfeel.com/cdn/shop/files/Hive-Core-Black-hero-banner-4-5.jpg?v=1757944854&width=120">
-      </div>
-    </div>
-    <div class="card-body">
-      <div><span class="badge badge-soñada">SOÑADA — €199</span></div>
-      <h3>Tropicfeel Hive — Core Black</h3>
-      <div class="price">€199</div>
-      <div class="meta">22-32L expandible · Core Black · BCN brand</div>
-      <ul class="specs">
-        <li class="ok">✓ Expandible 22→32L (hasta 42L con accesorios)</li>
-        <li class="ok">✓ Waist belt removible</li>
-        <li class="ok">✓ Chest strap</li>
-        <li class="ok">✓ Laptop compartment</li>
-        <li class="ok">✓ Hidden passport pocket</li>
-        <li class="ok">✓ Tienda física BCN (Diagonal 557) — probable in-person</li>
-        <li class="meh">~ Logo visible</li>
-      </ul>
-      <p class="summary">Modular travel-ready. Última imagen es lifestyle banner.</p>
-      <a href="https://shop.tropicfeel.com/products/hive-backpack" class="url-btn" target="_blank">Ver en Tropicfeel →</a>
-    </div>
-  </article>
-
-  <article class="card fail-warn">
-    <div class="gallery">
-      <img id="m9" class="main-img" src="https://images-dynamic-arcteryx.imgix.net/details/1350x1710/S26-X000009825-Mantis-26-Backpack-Black-Front.jpg" alt="Arc'teryx Mantis 26 Black">
-      <div class="thumbs">
-        <img class="thumb active" onclick="sm('m9',this)" data-full="https://images-dynamic-arcteryx.imgix.net/details/1350x1710/S26-X000009825-Mantis-26-Backpack-Black-Front.jpg" src="https://images-dynamic-arcteryx.imgix.net/details/1350x1710/S26-X000009825-Mantis-26-Backpack-Black-Front.jpg?w=120">
-        <img class="thumb" onclick="sm('m9',this)" data-full="https://images-dynamic-arcteryx.imgix.net/details/1350x1710/S26-X000009825-Mantis-26-Backpack-Black-Front-View.jpg" src="https://images-dynamic-arcteryx.imgix.net/details/1350x1710/S26-X000009825-Mantis-26-Backpack-Black-Front-View.jpg?w=120">
-        <img class="thumb" onclick="sm('m9',this)" data-full="https://images-dynamic-arcteryx.imgix.net/details/1350x1710/S26-X000009825-Mantis-26-Backpack-Black-Back.jpg" src="https://images-dynamic-arcteryx.imgix.net/details/1350x1710/S26-X000009825-Mantis-26-Backpack-Black-Back.jpg?w=120">
-        <img class="thumb" onclick="sm('m9',this)" data-full="https://images-dynamic-arcteryx.imgix.net/details/1350x1710/S26-X000009825-Mantis-26-Backpack-Black-Back-View.jpg" src="https://images-dynamic-arcteryx.imgix.net/details/1350x1710/S26-X000009825-Mantis-26-Backpack-Black-Back-View.jpg?w=120">
-        <img class="thumb" onclick="sm('m9',this)" data-full="https://images-dynamic-arcteryx.imgix.net/details/1350x1710/S26-X000009825-Mantis-26-Backpack-Black-Side.jpg" src="https://images-dynamic-arcteryx.imgix.net/details/1350x1710/S26-X000009825-Mantis-26-Backpack-Black-Side.jpg?w=120">
-        <img class="thumb" onclick="sm('m9',this)" data-full="https://images-dynamic-arcteryx.imgix.net/details/1350x1710/S26-X000009825-Mantis-26-Backpack-Black-Side-View.jpg" src="https://images-dynamic-arcteryx.imgix.net/details/1350x1710/S26-X000009825-Mantis-26-Backpack-Black-Side-View.jpg?w=120">
-        <img class="thumb" onclick="sm('m9',this)" data-full="https://images-dynamic-arcteryx.imgix.net/details/1350x1710/S26-X000009825-Mantis-26-Backpack-Black-Hover.jpg" src="https://images-dynamic-arcteryx.imgix.net/details/1350x1710/S26-X000009825-Mantis-26-Backpack-Black-Hover.jpg?w=120">
-        <img class="thumb" onclick="sm('m9',this)" data-full="https://images-dynamic-arcteryx.imgix.net/details/1350x1710/S26-X000009825-Mantis-26-Backpack-Black-Full-Body.jpg" src="https://images-dynamic-arcteryx.imgix.net/details/1350x1710/S26-X000009825-Mantis-26-Backpack-Black-Full-Body.jpg?w=120">
-      </div>
-    </div>
-    <div class="card-body">
-      <div><span class="badge badge-soñada">SOÑADA — €160</span><span class="badge badge-warn">⚠ NO TIENE HIPBELT</span></div>
-      <h3>Arc'teryx Mantis 26 — Black puro</h3>
-      <div class="price">€160</div>
-      <div class="meta">26L · Black puro · 8 fotos incl. modelo (Full-Body)</div>
-      <ul class="specs">
-        <li class="ok">✓ Padded back + frame sheet + aluminum stay</li>
-        <li class="ok">✓ Side pockets ajustables</li>
-        <li class="ok">✓ Laptop sleeve interno</li>
-        <li class="ok">✓ Sternum strap (chest)</li>
-        <li class="nope">✗ NO tiene hipbelt — confirmado por specs oficiales</li>
-        <li class="nope">✗ NO tiene bungee front</li>
-      </ul>
-      <p class="summary">Premium build, tu favorita visual. Pero falla el MUST de hipbelt — última foto es modelo puesta.</p>
-      <a href="https://arcteryx.com/shop/mantis-26-backpack-0643" class="url-btn" target="_blank">Ver en Arc'teryx →</a>
-    </div>
-  </article>
-
-</div>
-
-<h2>❌ Descartadas</h2>
+<h2>❌ Descartadas (resumen)</h2>
 <div class="descartadas">
   <ul>
-    <li><b>TNF Borealis 28L / Classic 29L</b> — muy grandes (cap >28).</li>
-    <li><b>TNF Vault 26.5L</b> — sin hipbelt confirmado.</li>
-    <li><b>TNF Recon 30L</b> — muy grande.</li>
-    <li><b>TNF Jester 28L</b> — sin hipbelt confirmado.</li>
-    <li><b>Patagonia Refugio Daypack 26L</b> — sin hipbelt fuerte. Vos: "horrible".</li>
-    <li><b>Patagonia Black Hole 25L</b> — sin hipbelt (solo sternum).</li>
-    <li><b>Boundary Rennen X-Pac 20L</b> — sin hipbelt + sin chest. €179.</li>
-    <li><b>Heimplanet Transit Line 24L</b> — straps se venden APARTE. €219.</li>
-    <li><b>Decathlon MH500 22L (no rolltop)</b> — descontinuado en ES.</li>
-    <li><b>Lowe Alpine AirZone 25</b> — absorbida por Rab, descatalogada.</li>
-    <li><b>Black Diamond Trail Vista 20/28</b> — sites con problemas.</li>
-    <li><b>Osprey Quasar 26 / Hikelite Tour 24</b> — Quasar discontinued ES; Hikelite no dark.</li>
-    <li><b>Salomon OUT Day 20+4</b> — no se pudo verificar (PerimeterX captcha).</li>
-    <li><b>Cotopaxi Allpa 26L Daypack</b> — sobre presupuesto (€150-180).</li>
-    <li><b>Db Journey línea completa</b> — toda >€189 EU.</li>
-    <li><b>AEVOR línea completa</b> — sin hipbelt o roll-top.</li>
+    <li><b>TNF Trail Lite 24L</b> (€125) — fea + cara (vos)</li>
+    <li><b>TNF Vault 26.5L</b> — sin hipbelt</li>
+    <li><b>TNF Recon 30L</b> — muy grande (vos)</li>
+    <li><b>TNF Jester 28L</b> — sin hipbelt confirmado</li>
+    <li><b>TNF Jester 22L</b> — women's, no usás women's (vos)</li>
+    <li><b>JW Astro Vent 24 / Velocity 20</b> — muy hikey (vos)</li>
+    <li><b>Vaude Wizard 24+4</b> — muy hikey (vos)</li>
+    <li><b>Tropicfeel Hive</b> — la odiás (vos)</li>
+    <li><b>Decathlon NH Escape 500 23L</b> — fea (vos)</li>
+    <li><b>Patagonia Refugio 26L</b> — horrible (vos) + sin hipbelt</li>
+    <li><b>Patagonia Black Hole 25L</b> — sin hipbelt</li>
+    <li><b>Boundary Rennen X-Pac 20L</b> — sin hipbelt + sin chest</li>
+    <li><b>Heimplanet Transit Line</b> — straps aparte + caro</li>
+    <li><b>Salomon ACS Daypack 20</b> — sin hipbelt + sin chest</li>
+    <li><b>Salomon OUT Day 20+4</b> — descontinuado, no full black</li>
+    <li><b>Salomon XT 25</b> — 25L OK pero sobre cap interno target</li>
+    <li><b>Arc'teryx Mantis 20</b> — descontinuado en ES (404)</li>
+    <li><b>Arc'teryx Granville 16/25</b> — descontinuado ES o sin hipbelt + caro</li>
+    <li><b>Arc'teryx Aerios 18</b> — €180 + sin laptop sleeve dedicado</li>
+    <li><b>Arc'teryx Heliad 15</b> — sin hipbelt fuerte</li>
+    <li><b>Cotopaxi Allpa</b> — sobre presupuesto</li>
+    <li><b>Db Journey línea completa</b> — toda &gt;€189</li>
+    <li><b>AEVOR completa</b> — sin hipbelt o roll-top</li>
   </ul>
 </div>
 
 <footer style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); color: var(--text-dim); font-size: 0.85rem;">
-  <p>URLs e imágenes verificadas con Playwright (browser real) — todas 200 OK al deploy.</p>
-  <p style="margin-top: 0.5rem;">Tap en thumbnails para cambiar foto principal. Tap "Ver en sitio" para ir a la página oficial.</p>
+  <p>v3 · URLs e imágenes verificadas con Playwright + WebFetch (todas 200 OK al deploy)</p>
+  <p style="margin-top: 0.4rem;">Tap thumbnails para cambiar foto principal · Tap "Ver en sitio" para sitio oficial</p>
 </footer>
 
 <script>
