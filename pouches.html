@@ -44,15 +44,11 @@
   }
   h3 { font-size: 1.05rem; margin: 0.4rem 0; }
   p.dim { color: var(--text-dim); font-size: 0.9rem; }
-
   .nav-back {
-    display: inline-block;
-    color: var(--text-dim);
-    text-decoration: none;
-    font-size: 0.8rem;
+    display: inline-block; color: var(--text-dim);
+    text-decoration: none; font-size: 0.8rem;
     margin-bottom: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    text-transform: uppercase; letter-spacing: 0.05em;
   }
   .nav-back:hover { color: var(--accent); }
 
@@ -71,18 +67,13 @@
   }
   .profile-cell:last-child { border-right: none; }
   .profile-cell .label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); }
-  .profile-cell .val { font-size: 1.1rem; font-weight: 700; margin-top: 0.2rem; }
+  .profile-cell .val { font-size: 1rem; font-weight: 700; margin-top: 0.2rem; }
 
-  .grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-  @media (min-width: 768px) {
-    .grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-  }
+  .grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+  @media (min-width: 768px) { .grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); } }
   @media (min-width: 1100px) {
     .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
   }
 
   .card {
@@ -97,35 +88,24 @@
   .card.top { border: 2px solid var(--top); }
   .card.pass { border: 2px solid var(--pass); }
   .card.premium-pick { border: 2px solid var(--premium); }
+  .card.warn { border: 2px solid var(--fail); }
 
   .card-img {
-    width: 100%;
-    height: 160px;
+    width: 100%; height: 160px;
     background: #fafafa;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    position: relative;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; position: relative;
   }
-  .card-img img {
-    max-width: 90%;
-    max-height: 90%;
-    object-fit: contain;
-  }
+  .card-img img { max-width: 90%; max-height: 90%; object-fit: contain; }
   .card-img-fallback {
-    color: #888;
-    font-size: 0.85rem;
-    padding: 1rem;
-    text-align: center;
+    color: #888; font-size: 0.85rem;
+    padding: 1rem; text-align: center;
     font-weight: 600;
   }
 
   .card-body {
     padding: 0.9rem 1rem;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+    flex: 1; display: flex; flex-direction: column;
   }
 
   .badges-row {
@@ -147,6 +127,8 @@
   .badge-warn { background: var(--fail); color: #fff; }
   .badge-ykk { background: var(--accent); color: #000; }
   .badge-noykk { background: #444; color: #ddd; }
+  .badge-eu { background: #4ade80; color: #000; }
+  .badge-us { background: #fbbf24; color: #000; }
 
   .card-brand {
     font-size: 0.7rem;
@@ -179,18 +161,12 @@
     letter-spacing: 0.04em;
   }
 
-  /* Combo section */
   .combos {
-    display: grid;
-    grid-template-columns: 1fr;
+    display: grid; grid-template-columns: 1fr;
     gap: 0.8rem;
   }
-  @media (min-width: 768px) {
-    .combos { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (min-width: 1100px) {
-    .combos { grid-template-columns: repeat(4, 1fr); }
-  }
+  @media (min-width: 768px) { .combos { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1100px) { .combos { grid-template-columns: repeat(4, 1fr); } }
   .combo-card {
     background: var(--card-bg);
     border: 1.5px solid var(--border);
@@ -206,7 +182,7 @@
     color: var(--text-dim);
     margin-bottom: 0.2rem;
   }
-  .combo-card .combo-name { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .combo-card .combo-name { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.3rem; }
   .combo-card .combo-price { font-size: 1.5rem; font-weight: 700; margin: 0.3rem 0; }
   .combo-card .combo-items { font-size: 0.78rem; color: var(--text-dim); margin: 0.4rem 0 0.7rem; line-height: 1.5; }
   .combo-card .combo-summary { font-size: 0.8rem; color: var(--text); font-style: italic; margin-bottom: 0.6rem; }
@@ -236,7 +212,7 @@
 
 <header>
   <h1>Pouches Kit Comparison</h1>
-  <p class="dim">For my TNF Recon 30L + future bigger packs · 3 categories · YKK preferred · €15-€55 per pouch · Barcelona EU</p>
+  <p class="dim">For my TNF Recon 30L + future bigger packs · 3 categories · YKK preferred · Barcelona EU · all URLs verified May 2026</p>
 </header>
 
 <div class="profile-row">
@@ -254,166 +230,216 @@
   </div>
   <div class="profile-cell">
     <div class="label">Recon front org</div>
-    <div class="val">Slim only · ≤6cm depth</div>
+    <div class="val">Slim only · ≤6cm</div>
   </div>
 </div>
 
 <!-- ============================================ -->
-<!-- CATEGORY 1: TECH POUCH                        -->
+<!-- CATEGORY 1: TECH POUCH (8 options)            -->
 <!-- ============================================ -->
 
-<h2>Category 1 · Tech Pouch</h2>
-<p class="dim">Slim flat fits Recon front organizer perfectly · 3D origami goes in main compartment for max organization</p>
+<h2>Category 1 · Tech Pouch — 8 options</h2>
+<p class="dim">Slim flat fits Recon front organizer · 3D origami goes in main compartment · all URLs verified live</p>
 
 <div class="grid">
 
-  <!-- Aer Slim Pouch 2 -->
   <article class="card pass">
     <div class="card-img">
-      <img src="https://aersf.com/cdn/shop/files/SlimPouch2_Black_Front_1024x1024.jpg" alt="Aer Slim Pouch 2 Black"
+      <img src="https://aersf.com/cdn/shop/files/AER21062_slimpouch2_black_34hero_1200x1200.jpg?v=1740177230" alt="Aer Slim Pouch 2 Black"
            onerror="this.parentElement.innerHTML='<div class=\'card-img-fallback\'>Aer Slim Pouch 2<br>Black</div>'">
     </div>
     <div class="card-body">
       <div class="badges-row">
         <span class="badge badge-pick">Slim winner</span>
         <span class="badge badge-ykk">YKK</span>
+        <span class="badge badge-us">US ship</span>
       </div>
       <div class="card-brand">Aer SF</div>
       <div class="card-name">Slim Pouch 2</div>
-      <div class="card-price">~€55</div>
-      <div class="card-meta">23×13×5 cm · 1680D Cordura · Slim flat</div>
+      <div class="card-price">€53</div>
+      <div class="card-meta">23×13×5 cm · 1680D Cordura · slim flat</div>
       <ul class="specs-list">
-        <li class="ok">✓ r/onebag consensus winner for slim</li>
-        <li class="ok">✓ Ballistic Cordura, near-indestructible</li>
-        <li class="ok">✓ Fits Recon front organizer perfect</li>
-        <li class="meh">~ Black sometimes sold out — check stock</li>
+        <li class="ok">✓ r/onebag consensus winner</li>
+        <li class="ok">✓ Ballistic Cordura, indestructible</li>
+        <li class="ok">✓ Fits Recon front org perfectly</li>
+        <li class="meh">~ Ships from US, customs at door</li>
       </ul>
       <a href="https://aersf.com/products/slim-pouch-2" class="url-btn" target="_blank">Buy at Aer SF →</a>
     </div>
   </article>
 
-  <!-- Tom Bihn Snake Charmer -->
   <article class="card top">
     <div class="card-img">
-      <img src="https://www.tombihn.com/cdn/shop/products/snake-charmer-small-black-parapack_1024x1024.jpg" alt="Tom Bihn Small Snake Charmer Black"
-           onerror="this.parentElement.innerHTML='<div class=\'card-img-fallback\'>Tom Bihn<br>Snake Charmer Small</div>'">
+      <img src="https://cdn.shopify.com/s/files/1/1089/8530/products/Snake-Charmer-Small-Sitka-Halcyon_db678154-3e2a-4746-b537-c4dd3d403bb0.jpg?v=1680294222" alt="Tom Bihn Small Snake Charmer"
+           onerror="this.parentElement.innerHTML='<div class=\'card-img-fallback\'>Tom Bihn<br>Small Snake Charmer</div>'">
     </div>
     <div class="card-body">
       <div class="badges-row">
-        <span class="badge badge-pick">Cult value</span>
+        <span class="badge badge-pick">Cult value · BIFL</span>
         <span class="badge badge-ykk">YKK #5</span>
+        <span class="badge badge-us">US ship</span>
       </div>
       <div class="card-brand">Tom Bihn</div>
       <div class="card-name">Small Snake Charmer</div>
-      <div class="card-price">~€57 to door</div>
-      <div class="card-meta">21×12.5×11 cm · 420D Parapack · Tubular slim · Lifetime warranty</div>
+      <div class="card-price">$35 (~€57 puerta)</div>
+      <div class="card-meta">21×12.5×11 cm · 420D Parapack · tubular · lifetime warranty</div>
       <ul class="specs-list">
-        <li class="ok">✓ Lifetime warranty real (not marketing)</li>
+        <li class="ok">✓ Lifetime warranty real</li>
         <li class="ok">✓ Mesh visible both sides</li>
         <li class="ok">✓ Made USA</li>
-        <li class="meh">~ Tubular not flat — fits Recon front but tight</li>
+        <li class="meh">~ Tubular not flat — fits Recon front tight</li>
       </ul>
       <a href="https://www.tombihn.com/products/small-snake-charmer" class="url-btn" target="_blank">Buy at Tom Bihn →</a>
     </div>
   </article>
 
-  <!-- Tomtoc T12 -->
   <article class="card">
     <div class="card-img">
-      <img src="https://m.media-amazon.com/images/I/61ScdvLnxWL._AC_SX679_.jpg" alt="Tomtoc Light-T12"
-           onerror="this.parentElement.innerHTML='<div class=\'card-img-fallback\'>Tomtoc Light-T12<br>Black</div>'">
+      <img src="https://m.media-amazon.com/images/I/81FNqbYJqxL._AC_SX679_.jpg" alt="Tomtoc Light-T12"
+           onerror="this.parentElement.innerHTML='<div class=\'card-img-fallback\'>Tomtoc<br>Light-T12</div>'">
     </div>
     <div class="card-body">
       <div class="badges-row">
-        <span class="badge badge-budget">Budget pick</span>
+        <span class="badge badge-budget">Cheapest YKK</span>
         <span class="badge badge-ykk">YKK</span>
+        <span class="badge badge-eu">Amazon ES</span>
       </div>
       <div class="card-brand">Tomtoc</div>
       <div class="card-name">Light-T12 Tech Organizer</div>
-      <div class="card-price">~€20</div>
-      <div class="card-meta">22×13×5 cm · Slim · Pack Hacker top value</div>
+      <div class="card-price">€21.99</div>
+      <div class="card-meta">22×13×5 cm · slim · Pack Hacker top value</div>
       <ul class="specs-list">
-        <li class="ok">✓ Pack Hacker rates ABOVE Peak Design Tech Pouch</li>
-        <li class="ok">✓ Fits Recon front organizer</li>
-        <li class="ok">✓ Cheapest with YKK</li>
-        <li class="meh">~ Less premium feel than Aer/Tom Bihn</li>
+        <li class="ok">✓ Pack Hacker rates ABOVE Peak Design</li>
+        <li class="ok">✓ Fits Recon front org</li>
+        <li class="ok">✓ Amazon ES Prime 1-2 days</li>
+        <li class="meh">~ Less premium feel</li>
       </ul>
-      <a href="https://www.amazon.es/s?k=tomtoc+light-T12" class="url-btn" target="_blank">Buy at Amazon ES →</a>
+      <a href="https://www.amazon.es/dp/B0CMQ3L1QD" class="url-btn" target="_blank">Buy at Amazon ES →</a>
     </div>
   </article>
 
-  <!-- Peak Design Tech Pouch -->
   <article class="card premium-pick">
     <div class="card-img">
-      <img src="https://files.peakdesign.com/eu/product/tech-pouch/Tech-Pouch-Charcoal-Open-1.jpg" alt="Peak Design Tech Pouch"
+      <img src="https://cdn.shopify.com/s/files/1/2986/1172/files/coyote-techpouch-159A9584.jpg?v=1727738516&width=1024" alt="Peak Design Tech Pouch"
            onerror="this.parentElement.innerHTML='<div class=\'card-img-fallback\'>Peak Design<br>Tech Pouch</div>'">
     </div>
     <div class="card-body">
       <div class="badges-row">
         <span class="badge badge-premium">3D winner</span>
         <span class="badge badge-ykk">YKK</span>
+        <span class="badge badge-eu">EU direct</span>
       </div>
       <div class="card-brand">Peak Design</div>
       <div class="card-name">Tech Pouch (Regular)</div>
       <div class="card-price">€59.99</div>
-      <div class="card-meta">24×12×10 cm · 2L · Origami 3D · Charcoal/Eclipse/Sage</div>
+      <div class="card-meta">24×12×10 cm · 2L · origami 3D · multiple colors</div>
       <ul class="specs-list">
-        <li class="ok">✓ 16+ compartments accordion-style</li>
+        <li class="ok">✓ 16+ accordion compartments</li>
         <li class="ok">✓ Pass-through cable port</li>
-        <li class="ok">✓ EU direct, fast shipping</li>
-        <li class="nope">✗ Too thick for Recon front org — main only</li>
+        <li class="ok">✓ EU warehouse, fast shipping</li>
+        <li class="nope">✗ Too thick for Recon front org</li>
       </ul>
       <a href="https://www.peakdesign.com/eu/products/tech-pouch" class="url-btn" target="_blank">Buy at Peak Design EU →</a>
     </div>
   </article>
 
-  <!-- Wandrd Tech Bag Medium -->
   <article class="card">
     <div class="card-img">
-      <img src="https://eu.wandrd.com/cdn/shop/files/wandrd-tech-bag-medium-classic-black.jpg" alt="Wandrd Tech Bag Medium"
+      <img src="https://eu.wandrd.com/cdn/shop/files/TechBagMedium-Black-Front.png?crop=center&height=630&v=1751407853&width=1200" alt="Wandrd Tech Bag Medium"
            onerror="this.parentElement.innerHTML='<div class=\'card-img-fallback\'>Wandrd<br>Tech Bag Medium</div>'">
     </div>
     <div class="card-body">
       <div class="badges-row">
         <span class="badge badge-budget">3D budget</span>
-        <span class="badge badge-noykk">No-name zip</span>
+        <span class="badge badge-noykk">No YKK</span>
+        <span class="badge badge-eu">EU direct</span>
       </div>
       <div class="card-brand">Wandrd</div>
       <div class="card-name">Tech Bag Medium</div>
       <div class="card-price">€49</div>
-      <div class="card-meta">23×11×8 cm · 2L · Accordion 3D · Classic Black</div>
+      <div class="card-meta">23×11×8 cm · 2L · accordion 3D · Classic Black</div>
       <ul class="specs-list">
         <li class="ok">✓ Best value 3D origami</li>
         <li class="ok">✓ Weather-resistant</li>
-        <li class="ok">✓ EU direct</li>
-        <li class="nope">✗ YKK NOT confirmed (your filter)</li>
+        <li class="ok">✓ EU direct, no customs</li>
+        <li class="nope">✗ Zippers not confirmed YKK</li>
       </ul>
       <a href="https://eu.wandrd.com/products/tech-bag" class="url-btn" target="_blank">Buy at Wandrd EU →</a>
     </div>
   </article>
 
-  <!-- Bellroy Tech Kit Compact -->
   <article class="card">
     <div class="card-img">
-      <img src="https://res.cloudinary.com/bellroy/image/upload/q_auto,f_auto/bellroy_dot_com/p/tech-kit/tech-kit-charcoal-1.jpg" alt="Bellroy Tech Kit Compact"
+      <img src="https://bellroy-product-images.imgix.net/bellroy_dot_com_gallery_image/EUR/ETKA-BLK-231/0?auto=format&fit=max&w=1024" alt="Bellroy Tech Kit Compact Black"
            onerror="this.parentElement.innerHTML='<div class=\'card-img-fallback\'>Bellroy<br>Tech Kit Compact</div>'">
     </div>
     <div class="card-body">
       <div class="badges-row">
         <span class="badge badge-premium">Premium clean</span>
-        <span class="badge badge-ykk">YKK water-resistant</span>
+        <span class="badge badge-ykk">YKK</span>
+        <span class="badge badge-eu">Free ship ES</span>
       </div>
       <div class="card-brand">Bellroy</div>
       <div class="card-name">Tech Kit Compact</div>
-      <div class="card-price">~€65</div>
-      <div class="card-meta">20×13×4 cm · Magnetic pocket · Cable strip · Slim 3D hybrid</div>
+      <div class="card-price">€59</div>
+      <div class="card-meta">20×13×4 cm · magnetic pocket · cable strip · slim 3D hybrid</div>
       <ul class="specs-list">
         <li class="ok">✓ Magnetic pocket + cable strip</li>
-        <li class="ok">✓ Cleaner aesthetic than Peak Design</li>
-        <li class="ok">✓ Slim profile fits Recon front org</li>
-        <li class="meh">~ Smaller capacity than Peak Design</li>
+        <li class="ok">✓ Cleaner aesthetic</li>
+        <li class="ok">✓ Slim profile fits Recon front</li>
+        <li class="ok">✓ Duties + taxes included EU</li>
       </ul>
-      <a href="https://bellroy.com/products/tech-kit-compact" class="url-btn" target="_blank">Buy at Bellroy →</a>
+      <a href="https://bellroy.com/products/tech-kit?color=black&material=ripstop_recycled&size=compact" class="url-btn" target="_blank">Buy at Bellroy →</a>
+    </div>
+  </article>
+
+  <article class="card warn">
+    <div class="card-img">
+      <img src="https://evergoods.us/cdn/shop/files/CIVIC-ACCESS-POUCH-1L-BLACK-CAP1-min_3_300x.png?v=1775477847" alt="Evergoods CAP 1L"
+           onerror="this.parentElement.innerHTML='<div class=\'card-img-fallback\'>Evergoods<br>CAP 1L</div>'">
+    </div>
+    <div class="card-body">
+      <div class="badges-row">
+        <span class="badge badge-premium">Cult fav</span>
+        <span class="badge badge-ykk">YKK</span>
+        <span class="badge badge-warn">US import</span>
+      </div>
+      <div class="card-brand">Evergoods</div>
+      <div class="card-name">CIVIC Access Pouch 1L (CAP 1L)</div>
+      <div class="card-price">$75 (~€90 puerta)</div>
+      <div class="card-meta">17×12×4.5 cm · 360° foam padding · X-Pac fabric option</div>
+      <ul class="specs-list">
+        <li class="ok">✓ 360° foam padding (only one in lineup)</li>
+        <li class="ok">✓ Cult favorite r/onebag</li>
+        <li class="nope">✗ Ships from US — customs + IVA at door</li>
+        <li class="nope">✗ Most expensive of the lineup</li>
+      </ul>
+      <a href="https://evergoods.us/products/civic-access-pouch-1l" class="url-btn" target="_blank">Buy at Evergoods US →</a>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-img">
+      <img src="https://alpakagear.com/cdn/shop/files/ELEMENTS_TECH_CASE_MINI_STRAP_AXOFLUX_BLACK.jpg?v=1747207986&width=1024" alt="Alpaka Elements Tech Case Mini"
+           onerror="this.parentElement.innerHTML='<div class=\'card-img-fallback\'>Alpaka<br>Tech Case Mini</div>'">
+    </div>
+    <div class="card-body">
+      <div class="badges-row">
+        <span class="badge badge-premium">Tech-ready</span>
+        <span class="badge badge-ykk">YKK waterproof</span>
+        <span class="badge badge-us">Global ship</span>
+      </div>
+      <div class="card-brand">Alpaka</div>
+      <div class="card-name">Elements Tech Case Mini</div>
+      <div class="card-price">€49</div>
+      <div class="card-meta">23×13.5×7 cm · Axoflux or X-Pac VX42 · semi-rigid</div>
+      <ul class="specs-list">
+        <li class="ok">✓ Most "tech-ready" interior organization</li>
+        <li class="ok">✓ Waterproof YKK</li>
+        <li class="ok">✓ Multiple fabric choices</li>
+        <li class="meh">~ 7cm depth tight for Recon front org</li>
+      </ul>
+      <a href="https://alpakagear.com/products/elements-tech-case-mini" class="url-btn" target="_blank">Buy at Alpaka →</a>
     </div>
   </article>
 
@@ -424,80 +450,76 @@
 <!-- ============================================ -->
 
 <h2>Category 2 · Packing Cubes Set of 3</h2>
-<p class="dim">Community rule: 3 cubes max · NO compression cubes · S/M/L for gym + travel</p>
+<p class="dim">Community rule: 3 cubes max · NO compression · S/M/L for gym + travel</p>
 
 <div class="grid grid-3">
 
-  <!-- Eagle Creek Reveal -->
   <article class="card pass">
     <div class="card-img">
-      <img src="https://eaglecreek.eu/cdn/shop/files/EC0A48Y8_010_HE.jpg" alt="Eagle Creek Pack-It Reveal Set 3"
+      <img src="https://eaglecreek.eu/cdn/shop/files/EC050406_820_a.jpg?v=1722599534&width=1024" alt="Eagle Creek Pack-It Reveal Set 3"
            onerror="this.parentElement.innerHTML='<div class=\'card-img-fallback\'>Eagle Creek<br>Pack-It Reveal Set</div>'">
     </div>
     <div class="card-body">
       <div class="badges-row">
         <span class="badge badge-pick">Consensus winner</span>
-        <span class="badge badge-ykk">Zoom zip</span>
+        <span class="badge badge-eu">EU direct</span>
       </div>
       <div class="card-brand">Eagle Creek</div>
-      <div class="card-name">Pack-It Reveal Set XS/S/M</div>
-      <div class="card-price">€42-50</div>
-      <div class="card-meta">3 sizes · Polyester ripstop recycled · Mesh windows · Lifetime warranty</div>
+      <div class="card-name">Pack-It Reveal Set XS/S/M (Black)</div>
+      <div class="card-price">€53</div>
+      <div class="card-meta">3 sizes · polyester ripstop recycled · mesh visibility · lifetime warranty</div>
       <ul class="specs-list">
-        <li class="ok">✓ r/onebag consensus repeat winner</li>
+        <li class="ok">✓ r/onebag repeat consensus winner</li>
         <li class="ok">✓ Mesh visibility both sides</li>
         <li class="ok">✓ Lifetime warranty</li>
-        <li class="meh">~ Zoom zippers (not YKK but high quality)</li>
+        <li class="meh">~ Zoom zippers (high quality, not YKK)</li>
       </ul>
-      <a href="https://eaglecreek.eu/collections/pack-it-reveal" class="url-btn" target="_blank">Buy at Eagle Creek EU →</a>
+      <a href="https://eaglecreek.eu/products/pack-it-reveal-cube-set-xssm" class="url-btn" target="_blank">Buy at Eagle Creek EU →</a>
     </div>
   </article>
 
-  <!-- Thule Compression Set -->
-  <article class="card">
+  <article class="card warn">
     <div class="card-img">
-      <img src="https://www.thule.com/-/media/dam/thule/3204860_TCCS-201_BLACK_FRONT_3204860.jpg" alt="Thule Compression Cube Set"
+      <img src="https://www.thule.com/-/p/cb5rLJ6FovwigJlg_rFe-pXd_zR94WvvCViILYirbQ0/rs:fit/f:avif/cb:2.1/q:80/h:500/w:500/plain/approved/std.lang.all/95/90/1579590.png" alt="Thule Compression Cube Set"
            onerror="this.parentElement.innerHTML='<div class=\'card-img-fallback\'>Thule<br>Compression Cube Set</div>'">
     </div>
     <div class="card-body">
       <div class="badges-row">
-        <span class="badge badge-pick">YKK alt</span>
-        <span class="badge badge-ykk">YKK</span>
+        <span class="badge badge-ykk">YKK confirmed</span>
+        <span class="badge badge-warn">No black</span>
       </div>
       <div class="card-brand">Thule</div>
       <div class="card-name">Compression Cube Set S+M</div>
-      <div class="card-price">€39.90</div>
-      <div class="card-meta">2 cubes · 100D ripstop bluesign · YKK confirmed</div>
+      <div class="card-price">€44.95</div>
+      <div class="card-meta">2 cubes · 100D ripstop bluesign · White / Pond Gray / Beige</div>
       <ul class="specs-list">
         <li class="ok">✓ YKK genuine</li>
-        <li class="ok">✓ Compression effective on fleeces</li>
-        <li class="meh">~ Only 2 cubes (not 3) — adds need for 3rd</li>
-        <li class="meh">~ Community warns compression in general</li>
+        <li class="ok">✓ Bluesign certified material</li>
+        <li class="nope">✗ NO BLACK option (only White/Gray/Beige)</li>
+        <li class="meh">~ Only 2 cubes (not 3)</li>
       </ul>
-      <a href="https://www.thule.com/en-es/luggage-organizer/packing-organizer/thule-compression-packing-cube-set-_-3204860" class="url-btn" target="_blank">Buy at Thule →</a>
+      <a href="https://www.thule.com/es-es/organizers/packing-cubes-and-folders/thule-compression-cube-set-_-3205564" class="url-btn" target="_blank">Buy at Thule ES →</a>
     </div>
   </article>
 
-  <!-- Forclaz Decathlon -->
   <article class="card">
     <div class="card-img">
-      <img src="https://contents.mediadecathlon.com/p2127316/k$355c87cc77a93e63f1c5ea9bdc1a3d1c/picture.jpg?format=auto&f=600x600" alt="Forclaz Packing Cubes Set 3"
-           onerror="this.parentElement.innerHTML='<div class=\'card-img-fallback\'>Forclaz<br>Packing Cubes Set 3</div>'">
+      <img src="https://contents.mediadecathlon.com/p1574424/k$8b2d550289be3b43c3397ecbaa5bf8bd/picture.jpg?format=auto&f=600x600" alt="Forclaz Decathlon Set 3"
+           onerror="this.parentElement.innerHTML='<div class=\'card-img-fallback\'>Forclaz<br>Set 3 Travel Cubes</div>'">
     </div>
     <div class="card-body">
       <div class="badges-row">
-        <span class="badge badge-budget">Budget</span>
+        <span class="badge badge-budget">Budget €10</span>
         <span class="badge badge-noykk">Generic zip</span>
       </div>
       <div class="card-brand">Decathlon Forclaz</div>
       <div class="card-name">Set of 3 Travel Cubes</div>
       <div class="card-price">€9.99</div>
-      <div class="card-meta">1L + 2 small · Polyester · 4.9/5 rating</div>
+      <div class="card-meta">1L + 2 small · polyester · 4.9/5 rating · Black</div>
       <ul class="specs-list">
         <li class="ok">✓ Cheapest by far</li>
         <li class="ok">✓ Validate the system before upgrading</li>
-        <li class="meh">~ Generic zippers (not YKK)</li>
-        <li class="meh">~ No premium feel</li>
+        <li class="meh">~ Generic zippers</li>
       </ul>
       <a href="https://www.decathlon.es/es/p/organizadores-de-maleta-lote-de-3-1-grande-y-2-pequenas-forclaz/_/R-p-303058" class="url-btn" target="_blank">Buy at Decathlon ES →</a>
     </div>
@@ -510,80 +532,79 @@
 <!-- ============================================ -->
 
 <h2>Category 3 · Small Accessory Pouch</h2>
-<p class="dim">For sunglasses + AirPods + keys + valuables · slim flat preferred for Recon front org</p>
+<p class="dim">For sunglasses + AirPods + keys + valuables · slim flat preferred</p>
 
 <div class="grid grid-3">
 
-  <!-- Topo Designs Small -->
   <article class="card pass">
     <div class="card-img">
-      <img src="https://topodesigns.eu/cdn/shop/files/TopoDesigns-Accessory-Bag-Black-Black-Small.jpg" alt="Topo Designs Small Accessory Bag"
+      <img src="https://cdn.shopify.com/s/files/1/0527/6637/6136/files/accessory-bags-bagsbag-organizationaccessory-bags-1047381.jpg?v=1769783482" alt="Topo Designs Small Accessory Bag Black/Black"
            onerror="this.parentElement.innerHTML='<div class=\'card-img-fallback\'>Topo Designs<br>Small Accessory Bag</div>'">
     </div>
     <div class="card-body">
       <div class="badges-row">
-        <span class="badge badge-pick">No-brainer pick</span>
+        <span class="badge badge-pick">No-brainer</span>
         <span class="badge badge-ykk">YKK confirmed</span>
+        <span class="badge badge-eu">EU direct</span>
       </div>
       <div class="card-brand">Topo Designs</div>
-      <div class="card-name">Small Accessory Bag</div>
-      <div class="card-price">€15.90</div>
+      <div class="card-name">Small Accessory Bag (Black/Black)</div>
+      <div class="card-price">€20.06</div>
       <div class="card-meta">21.6×14 cm · 1000D nylon recycled · Black/Black</div>
       <ul class="specs-list">
         <li class="ok">✓ YKK confirmed at this price</li>
         <li class="ok">✓ Fits sunglasses + AirPods + keys + cables</li>
         <li class="ok">✓ 1000D recycled nylon</li>
-        <li class="ok">✓ Made by reputable brand</li>
+        <li class="ok">✓ Reputable brand, EU direct</li>
       </ul>
-      <a href="https://topodesigns.eu/products/accessory-bags" class="url-btn" target="_blank">Buy at Topo EU →</a>
+      <a href="https://topodesigns.eu/products/accessory-bags-black-black?variant=55436341215608" class="url-btn" target="_blank">Buy at Topo Designs EU →</a>
     </div>
   </article>
 
-  <!-- Topo Designs Micro -->
   <article class="card">
     <div class="card-img">
-      <img src="https://topodesigns.eu/cdn/shop/files/TopoDesigns-Accessory-Bag-Black-Black-Micro.jpg" alt="Topo Designs Micro Accessory Bag"
+      <img src="https://cdn.shopify.com/s/files/1/0527/6637/6136/files/accessory-bags-bagsbag-organizationaccessory-bags-8724761.jpg?v=1769783482" alt="Topo Designs Micro Accessory Bag"
            onerror="this.parentElement.innerHTML='<div class=\'card-img-fallback\'>Topo Designs<br>Micro Accessory Bag</div>'">
     </div>
     <div class="card-body">
       <div class="badges-row">
         <span class="badge badge-pick">Compact</span>
         <span class="badge badge-ykk">YKK</span>
+        <span class="badge badge-eu">EU direct</span>
       </div>
       <div class="card-brand">Topo Designs</div>
-      <div class="card-name">Micro Accessory Bag</div>
-      <div class="card-price">€15.90</div>
-      <div class="card-meta">12×8.25 cm · Same material · For AirPods + keys only</div>
+      <div class="card-name">Micro Accessory Bag (Black/Black)</div>
+      <div class="card-price">€16.03</div>
+      <div class="card-meta">12×8.25 cm · same material · for AirPods + keys only</div>
       <ul class="specs-list">
         <li class="ok">✓ Same quality as Small</li>
         <li class="ok">✓ Ultra-compact</li>
         <li class="meh">~ Too small for sunglasses</li>
       </ul>
-      <a href="https://topodesigns.eu/products/accessory-bags" class="url-btn" target="_blank">Buy at Topo EU →</a>
+      <a href="https://topodesigns.eu/products/accessory-bags-black-black?variant=55436341182840" class="url-btn" target="_blank">Buy at Topo Designs EU →</a>
     </div>
   </article>
 
-  <!-- Bellroy Standing Pouch -->
-  <article class="card premium-pick">
+  <article class="card">
     <div class="card-img">
-      <img src="https://res.cloudinary.com/bellroy/image/upload/q_auto,f_auto/bellroy_dot_com/p/standing-pouch/standing-pouch-black-1.jpg" alt="Bellroy Standing Pouch Black"
-           onerror="this.parentElement.innerHTML='<div class=\'card-img-fallback\'>Bellroy<br>Standing Pouch</div>'">
+      <img src="https://bellroy-product-images.imgix.net/bellroy_dot_com_gallery_image/EUR/EHAB-BLK-243/0?auto=format&fit=max&w=1024" alt="Bellroy Cinch Pouch Black"
+           onerror="this.parentElement.innerHTML='<div class=\'card-img-fallback\'>Bellroy<br>Cinch Pouch</div>'">
     </div>
     <div class="card-body">
       <div class="badges-row">
-        <span class="badge badge-premium">Premium</span>
-        <span class="badge badge-ykk">YKK</span>
+        <span class="badge badge-budget">Bellroy budget</span>
+        <span class="badge badge-eu">Free ship ES</span>
       </div>
       <div class="card-brand">Bellroy</div>
-      <div class="card-name">Standing Pouch</div>
-      <div class="card-price">~€55-65</div>
-      <div class="card-meta">~18×14×6 cm · Self-standing geometry · Melbourne Black</div>
+      <div class="card-name">Cinch Pouch (replaces discontinued Standing Pouch)</div>
+      <div class="card-price">€19</div>
+      <div class="card-meta">~16×12 cm · Relaxo Weave · Black</div>
       <ul class="specs-list">
-        <li class="ok">✓ Stands open on a desk</li>
-        <li class="ok">✓ Premium feel</li>
-        <li class="meh">~ 4x price of Topo for similar use case</li>
+        <li class="ok">✓ Bellroy build quality at budget price</li>
+        <li class="ok">✓ Duties + taxes included EU</li>
+        <li class="meh">~ Drawstring close, not zipper (different style)</li>
       </ul>
-      <a href="https://bellroy.com/products/standing-pouch-plus" class="url-btn" target="_blank">Buy at Bellroy →</a>
+      <a href="https://bellroy.com/products/cinch-pouch?color=black&material=relaxo_weave" class="url-btn" target="_blank">Buy at Bellroy →</a>
     </div>
   </article>
 
@@ -594,56 +615,56 @@
 <!-- ============================================ -->
 
 <h2>Recommended Combos · 4 Options</h2>
-<p class="dim">Tap a combo to see what's inside · winner highlighted</p>
+<p class="dim">Each combo: 1 tech pouch + 1 cube set + 1 accessory pouch</p>
 
 <div class="combos">
 
   <article class="combo-card">
     <h3>Option A · Value</h3>
     <div class="combo-name">Wandrd + Eagle Creek + Topo</div>
-    <div class="combo-price">~€110</div>
+    <div class="combo-price">~€122</div>
     <div class="combo-items">
       Wandrd Tech Bag Medium €49<br>
-      Eagle Creek Pack-It Reveal Set 3 €45<br>
-      Topo Small Accessory €16
+      Eagle Creek Pack-It Reveal Set 3 €53<br>
+      Topo Small Accessory €20
     </div>
-    <p class="combo-summary">Cheapest full kit. Trade-off: Wandrd zippers not YKK confirmed.</p>
+    <p class="combo-summary">Cheapest full kit. Trade-off: Wandrd zippers not YKK.</p>
   </article>
 
   <article class="combo-card recommended">
     <h3>Option B · YKK Purist · RECOMMENDED</h3>
     <div class="combo-name">Aer + Eagle Creek + Topo</div>
-    <div class="combo-price">~€115</div>
+    <div class="combo-price">~€126</div>
     <div class="combo-items">
-      Aer Slim Pouch 2 €55<br>
-      Eagle Creek Pack-It Reveal Set 3 €45<br>
-      Topo Small Accessory €16
+      Aer Slim Pouch 2 €53<br>
+      Eagle Creek Pack-It Reveal Set 3 €53<br>
+      Topo Small Accessory €20
     </div>
     <p class="combo-summary">All YKK or premium-equivalent. Slim Aer fits Recon front perfectly.</p>
   </article>
 
   <article class="combo-card">
-    <h3>Option C · Cult Value</h3>
+    <h3>Option C · Cult Value · BIFL</h3>
     <div class="combo-name">Tom Bihn + Eagle Creek + Topo</div>
-    <div class="combo-price">~€118</div>
+    <div class="combo-price">~€130</div>
     <div class="combo-items">
-      Tom Bihn Snake Charmer €57<br>
-      Eagle Creek Pack-It Reveal Set 3 €45<br>
-      Topo Small Accessory €16
+      Tom Bihn Snake Charmer ~€57 puerta<br>
+      Eagle Creek Pack-It Reveal Set 3 €53<br>
+      Topo Small Accessory €20
     </div>
-    <p class="combo-summary">Lifetime warranty real. Made USA. Tubular shape for Recon front.</p>
+    <p class="combo-summary">Lifetime warranty real. Made USA. Tubular shape.</p>
   </article>
 
   <article class="combo-card">
     <h3>Option D · Premium 3D</h3>
     <div class="combo-name">Peak Design + Eagle Creek + Topo</div>
-    <div class="combo-price">~€121</div>
+    <div class="combo-price">~€133</div>
     <div class="combo-items">
       Peak Design Tech Pouch €60<br>
-      Eagle Creek Pack-It Reveal Set 3 €45<br>
-      Topo Small Accessory €16
+      Eagle Creek Pack-It Reveal Set 3 €53<br>
+      Topo Small Accessory €20
     </div>
-    <p class="combo-summary">Maximum tech pouch organization (16+ compartments). Goes in Recon main, not front.</p>
+    <p class="combo-summary">Maximum tech organization (16+ compartments). Goes in Recon main.</p>
   </article>
 
 </div>
@@ -655,18 +676,19 @@
 <h2>What NOT to Buy</h2>
 <div class="avoid-box">
   <ul>
-    <li><b>Compression cubes (general)</b> — community consensus: don't actually compress enough on daily-wear clothes to justify the bulk</li>
+    <li><b>Compression cubes (general)</b> — community consensus: don't compress enough on daily-wear clothes to justify bulk</li>
     <li><b>Bagail / Amazon Basics no-name cubes</b> — zippers fail, sausage shape after 6 months</li>
-    <li><b>Peak Design Wash Pouch</b> — you already have a toiletry kit</li>
-    <li><b>Bellroy Tech Kit (regular non-Compact) at €89</b> — overpriced vs alternatives</li>
-    <li><b>Evergoods CIVIC Access Pouch 2L (€95+)</b> — Tom Bihn or Aer Slim are equivalent at half cost</li>
-    <li><b>Pills pouch / Bellroy Pencil Case</b> — you don't carry meds daily</li>
-    <li><b>Document/passport pouch</b> — you don't travel internationally enough; secret pocket of Recon is enough</li>
+    <li><b>Peak Design Wash Pouch</b> — already have toiletry kit</li>
+    <li><b>Bellroy Standing Pouch / Plus</b> — discontinued. Use Cinch Pouch instead.</li>
+    <li><b>Evergoods CIVIC Access Pouch 2L</b> at ~€95+ — CAP 1L is better value at $75 (~€90 puerta) but still expensive vs Aer/Tom Bihn</li>
+    <li><b>Pills pouch / Bellroy Pencil Case</b> — don't carry meds daily</li>
+    <li><b>Document/passport pouch</b> — Recon hidden secret pocket is enough</li>
+    <li><b>Thule Compression Cube Set</b> — no black colorway available</li>
   </ul>
 </div>
 
 <footer>
-  <p>v1 · all URLs verified at compile time · all prices EUR EU/Spain · May 2026</p>
+  <p>v2 · all URLs + image URLs verified live with Playwright (browser real) · all prices EUR EU/Spain · May 2026</p>
   <p style="margin-top: 0.4rem;">Click any product card's button to buy direct. If image doesn't load, click button to view on retailer site.</p>
 </footer>
 
