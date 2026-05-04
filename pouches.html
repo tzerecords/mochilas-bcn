@@ -204,6 +204,36 @@
   .avoid-box li b { color: var(--text); }
 
   footer { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border); color: var(--text-dim); font-size: 0.78rem; }
+
+  /* Collapsible sections */
+  details { margin-bottom: 0.5rem; }
+  details summary {
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+    padding: 0.3rem 0;
+  }
+  details summary::-webkit-details-marker { display: none; }
+  details summary::marker { content: ""; }
+  details summary h2 {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    width: 100%;
+    margin: 1.5rem 0 0.7rem;
+    transition: color 0.2s;
+  }
+  details summary h2::after {
+    content: "▼";
+    margin-left: auto;
+    font-size: 0.65em;
+    transition: transform 0.25s ease;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+  details[open] summary h2::after { transform: rotate(180deg); }
+  details summary:hover h2 { color: var(--top); }
+  details summary:hover h2::after { color: var(--top); }
 </style>
 </head>
 <body>
@@ -238,7 +268,8 @@
 <!-- CATEGORY 1: TECH POUCH (8 options)            -->
 <!-- ============================================ -->
 
-<h2>Category 1 · Tech Pouch — 7 options under €60</h2>
+<details open>
+<summary><h2>Category 1 · Tech Pouch — 7 options under €60</h2></summary>
 <p class="dim">Slim flat fits Recon front organizer · 3D origami goes in main compartment · all URLs verified live</p>
 <p class="dim" style="margin-top:0.4rem;font-style:italic;">Above €60 — mention only (won't spend more on a single pouch): <b style="color:var(--text);">Evergoods CIVIC Access Pouch 1L</b> ($75 ~€90 puerta) — cult favorite, 360° foam padding, but ships from US with customs. Skip unless you really want it.</p>
 
@@ -426,7 +457,10 @@
 <!-- CATEGORY 2: PACKING CUBES                     -->
 <!-- ============================================ -->
 
-<h2>Category 2 · Packing Cubes Set of 3</h2>
+</details>
+
+<details open>
+<summary><h2>Category 2 · Packing Cubes Set of 3</h2></summary>
 <p class="dim">Community rule: 3 cubes max · NO compression · S/M/L for gym + travel</p>
 
 <div class="grid grid-3">
@@ -508,7 +542,10 @@
 <!-- CATEGORY 3: ACCESSORY POUCH                   -->
 <!-- ============================================ -->
 
-<h2>Category 3 · Small Accessory Pouch</h2>
+</details>
+
+<details open>
+<summary><h2>Category 3 · Small Accessory Pouch</h2></summary>
 <p class="dim">For sunglasses + AirPods + keys + valuables · slim flat preferred</p>
 
 <div class="grid grid-3">
@@ -569,7 +606,10 @@
 <!-- COMBOS                                        -->
 <!-- ============================================ -->
 
-<h2>Recommended Combos · 6 Options</h2>
+</details>
+
+<details open>
+<summary><h2>Recommended Combos · 6 Options</h2></summary>
 <p class="dim">Each combo: 1 tech pouch + 1 cube set + 1 accessory pouch</p>
 <p class="dim" style="margin-top:0.4rem;font-style:italic;">Zipper note: combos A-D use YKK or quality alternatives. Combos E-F use Decathlon Forclaz which has generic no-brand zippers (no marca declarada) — quality is "fine for casual use" with 3-year Decathlon warranty. NOT YKK-level smoothness, but not garbage either. If you want YKK, stick with A-D.</p>
 
@@ -654,7 +694,10 @@
 <!-- AVOID                                         -->
 <!-- ============================================ -->
 
-<h2>What NOT to Buy</h2>
+</details>
+
+<details>
+<summary><h2>What NOT to Buy</h2></summary>
 <div class="avoid-box">
   <ul>
     <li><b>Compression cubes (general)</b> — community consensus: don't compress enough on daily-wear clothes to justify bulk</li>
@@ -667,6 +710,7 @@
     <li><b>Thule Compression Cube Set</b> — no black colorway available</li>
   </ul>
 </div>
+</details>
 
 <footer>
   <p>v2 · all URLs + image URLs verified live with Playwright (browser real) · all prices EUR EU/Spain · May 2026</p>
