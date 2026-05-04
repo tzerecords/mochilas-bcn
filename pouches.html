@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pouches Kit Comparison — Mati Recon 30L</title>
+<title>Pouches Kit — Mati Recon 30L · v5</title>
 <style>
   :root {
     --bg: #0a0a0a;
@@ -58,9 +58,11 @@
     margin-bottom: 1rem;
     border-radius: 8px;
     overflow: hidden;
+    flex-wrap: wrap;
   }
   .profile-cell {
     flex: 1;
+    min-width: 140px;
     padding: 0.7rem 0.8rem;
     border-right: 1px solid var(--border);
     background: var(--card-bg);
@@ -74,6 +76,7 @@
   @media (min-width: 1100px) {
     .grid-3 { grid-template-columns: repeat(3, 1fr); }
     .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    .grid-5 { grid-template-columns: repeat(5, 1fr); }
   }
 
   .card {
@@ -161,12 +164,51 @@
     letter-spacing: 0.04em;
   }
 
+  /* Camera matrix */
+  table.camera-matrix {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+    background: var(--card-bg);
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 0.8rem 0;
+  }
+  table.camera-matrix th, table.camera-matrix td {
+    padding: 0.6rem 0.7rem;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+    vertical-align: top;
+  }
+  table.camera-matrix thead th {
+    background: #1a1a1a;
+    font-weight: 700;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--text-dim);
+  }
+  table.camera-matrix thead th span {
+    display: block;
+    font-weight: 400;
+    text-transform: none;
+    color: var(--text-dim);
+    font-size: 0.7rem;
+    margin-top: 0.2rem;
+    letter-spacing: 0;
+  }
+  table.camera-matrix tbody td:first-child { font-weight: 700; color: var(--text); }
+  table.camera-matrix td.fits { color: var(--pass); font-weight: 700; text-align: center; font-size: 1rem; }
+  table.camera-matrix td.tight { color: var(--top); font-weight: 700; text-align: center; }
+  table.camera-matrix td.no { color: var(--fail); font-weight: 700; text-align: center; font-size: 1rem; }
+  table.camera-matrix tbody tr:last-child td { border-bottom: none; }
+
   .combos {
     display: grid; grid-template-columns: 1fr;
     gap: 0.8rem;
   }
   @media (min-width: 768px) { .combos { grid-template-columns: repeat(2, 1fr); } }
-  @media (min-width: 1100px) { .combos { grid-template-columns: repeat(4, 1fr); } }
+  @media (min-width: 1100px) { .combos { grid-template-columns: repeat(5, 1fr); } }
   .combo-card {
     background: var(--card-bg);
     border: 1.5px solid var(--border);
@@ -175,14 +217,15 @@
     display: flex; flex-direction: column;
   }
   .combo-card.recommended { border: 2px solid var(--pass); background: linear-gradient(135deg, rgba(74,222,128,0.06), transparent); }
+  .combo-card.premium { border: 1.5px dashed var(--premium); }
   .combo-card h3 {
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: var(--text-dim);
     margin-bottom: 0.2rem;
   }
-  .combo-card .combo-name { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .combo-card .combo-name { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.3rem; }
   .combo-card .combo-price { font-size: 1.5rem; font-weight: 700; margin: 0.3rem 0; }
   .combo-card .combo-items { font-size: 0.78rem; color: var(--text-dim); margin: 0.4rem 0 0.7rem; line-height: 1.5; }
   .combo-card .combo-summary { font-size: 0.8rem; color: var(--text); font-style: italic; margin-bottom: 0.6rem; }
@@ -195,7 +238,7 @@
   }
   .avoid-box ul { list-style: none; }
   .avoid-box li {
-    padding: 0.3rem 0;
+    padding: 0.4rem 0;
     color: var(--text-dim);
     font-size: 0.85rem;
     border-bottom: 1px solid var(--border);
@@ -241,135 +284,82 @@
 <a href="/" class="nav-back">← back to bag</a>
 
 <header>
-  <h1>Pouches Kit Comparison</h1>
-  <p class="dim">For my TNF Recon 30L + future bigger packs · 3 categories · YKK preferred · Barcelona EU · all URLs verified May 2026</p>
+  <h1>Pouches Kit · v5</h1>
+  <p class="dim">TNF Recon 30L · 1 tech pouch externo + bulk Decathlon cubes · Barcelona · URLs verificadas mayo 2026</p>
 </header>
 
 <div class="profile-row">
   <div class="profile-cell">
-    <div class="label">Need</div>
-    <div class="val">Tech + Cubes + Accessory</div>
+    <div class="label">Plan</div>
+    <div class="val">Tech externo + Decathlon cubes</div>
   </div>
   <div class="profile-cell">
-    <div class="label">Already have</div>
+    <div class="label">Ya tengo</div>
     <div class="val">Toiletry · Glasses</div>
   </div>
   <div class="profile-cell">
-    <div class="label">Skip</div>
-    <div class="val">Pills · Documents</div>
+    <div class="label">Default budget</div>
+    <div class="val">&lt;€100</div>
   </div>
   <div class="profile-cell">
-    <div class="label">Recon front org</div>
-    <div class="val">Slim only · ≤6cm</div>
+    <div class="label">Cámara fit</div>
+    <div class="val">Mirrorless ↑</div>
   </div>
 </div>
 
 <!-- ============================================ -->
-<!-- CATEGORY 1: TECH POUCH (8 options)            -->
+<!-- CATEGORY 1: TECH POUCH (5 externos)          -->
 <!-- ============================================ -->
 
 <details open>
-<summary><h2>Category 1 · Tech Pouch — 7 options under €60</h2></summary>
-<p class="dim">Slim flat fits Recon front organizer · 3D origami goes in main compartment · all URLs verified live</p>
-<p class="dim" style="margin-top:0.4rem;font-style:italic;">Above €60 — mention only (won't spend more on a single pouch): <b style="color:var(--text);">Evergoods CIVIC Access Pouch 1L</b> ($75 ~€90 puerta) — cult favorite, 360° foam padding, but ships from US with customs. Skip unless you really want it.</p>
+<summary><h2>Tech pouch · externo · va en main del Recon</h2></summary>
+<p class="dim">Decathlon ES no tiene tech pouch decente con padding+dividers, así que el tech pouch viene de fuera. 5 picks, todos verificados live mayo 2026.</p>
 
-<div class="grid">
+<div class="grid grid-3">
 
   <article class="card pass">
     <div class="card-img">
-      <img src="https://aersf.com/cdn/shop/files/AER21062_slimpouch2_black_34hero_1200x1200.jpg?v=1740177230" alt="Aer Slim Pouch 2 Black"
-           onerror="this.parentElement.innerHTML='<div class=\'card-img-fallback\'>Aer Slim Pouch 2<br>Black</div>'">
+      <img src="https://bellroy-product-images.imgix.net/advertising_shopping_feed_image/EUR/ETKB-BLK-231/0?w=800&h=450&fit=clamp&crop=entropy&auto=format" alt="Bellroy Tech Kit Compact"
+           onerror="this.parentElement.innerHTML='<div class=\'card-img-fallback\'>Bellroy<br>Tech Kit Compact</div>'">
     </div>
     <div class="card-body">
       <div class="badges-row">
-        <span class="badge badge-pick">Slim winner</span>
-        <span class="badge badge-ykk">YKK</span>
-        <span class="badge badge-us">US ship</span>
+        <span class="badge badge-pass">Recommended ⭐</span>
+        <span class="badge badge-eu">EU NL</span>
       </div>
-      <div class="card-brand">Aer SF</div>
-      <div class="card-name">Slim Pouch 2</div>
-      <div class="card-price">€53</div>
-      <div class="card-meta">23×13×5 cm · 1680D Cordura · slim flat</div>
+      <div class="card-brand">Bellroy</div>
+      <div class="card-name">Tech Kit Compact</div>
+      <div class="card-price">€59</div>
+      <div class="card-meta">semi-3D · magnetic flap · ripstop recycled</div>
       <ul class="specs-list">
-        <li class="ok">✓ r/onebag consensus winner</li>
-        <li class="ok">✓ Ballistic Cordura, indestructible</li>
-        <li class="ok">✓ Fits Recon front org perfectly</li>
-        <li class="meh">~ Ships from US, customs at door</li>
+        <li class="ok">✓ Padding interno + cable strip</li>
+        <li class="ok">✓ Aloja mirrorless+pancake holgado</li>
+        <li class="ok">✓ NL warehouse, IVA incluido</li>
+        <li class="meh">~ Sin dividers movibles</li>
       </ul>
-      <a href="https://aersf.com/products/slim-pouch-2" class="url-btn" target="_blank">Buy at Aer SF →</a>
+      <a href="https://bellroy.com/products/tech-kit?color=black&material=ripstop_recycled&size=compact" class="url-btn" target="_blank">Buy at Bellroy →</a>
     </div>
   </article>
 
   <article class="card top">
     <div class="card-img">
-      <img src="https://cdn.shopify.com/s/files/1/1089/8530/products/Snake-Charmer-Small-Sitka-Halcyon_db678154-3e2a-4746-b537-c4dd3d403bb0.jpg?v=1680294222" alt="Tom Bihn Small Snake Charmer"
-           onerror="this.parentElement.innerHTML='<div class=\'card-img-fallback\'>Tom Bihn<br>Small Snake Charmer</div>'">
+      <img src="https://cdn.shopify.com/s/files/1/2986/1172/files/smalltechpouch-black-159A0505_10187358-9116-45c9-bf04-93a326319830.jpg?v=1762275795" alt="Peak Design Small Tech Pouch"
+           onerror="this.parentElement.innerHTML='<div class=\'card-img-fallback\'>Peak Design<br>Small Tech Pouch</div>'">
     </div>
     <div class="card-body">
       <div class="badges-row">
-        <span class="badge badge-pick">Cult value · BIFL</span>
-        <span class="badge badge-ykk">YKK #5</span>
-        <span class="badge badge-us">US ship</span>
-      </div>
-      <div class="card-brand">Tom Bihn</div>
-      <div class="card-name">Small Snake Charmer</div>
-      <div class="card-price">$35 (~€57 puerta)</div>
-      <div class="card-meta">21×12.5×11 cm · 420D Parapack · tubular · lifetime warranty</div>
-      <ul class="specs-list">
-        <li class="ok">✓ Lifetime warranty real</li>
-        <li class="ok">✓ Mesh visible both sides</li>
-        <li class="ok">✓ Made USA</li>
-        <li class="meh">~ Tubular not flat — fits Recon front tight</li>
-      </ul>
-      <a href="https://www.tombihn.com/products/small-snake-charmer" class="url-btn" target="_blank">Buy at Tom Bihn →</a>
-    </div>
-  </article>
-
-  <article class="card">
-    <div class="card-img">
-      <img src="https://m.media-amazon.com/images/I/81FNqbYJqxL._AC_SX679_.jpg" alt="Tomtoc Light-T12"
-           onerror="this.parentElement.innerHTML='<div class=\'card-img-fallback\'>Tomtoc<br>Light-T12</div>'">
-    </div>
-    <div class="card-body">
-      <div class="badges-row">
-        <span class="badge badge-budget">Cheapest YKK</span>
-        <span class="badge badge-ykk">YKK</span>
-        <span class="badge badge-eu">Amazon ES</span>
-      </div>
-      <div class="card-brand">Tomtoc</div>
-      <div class="card-name">Light-T12 Tech Organizer</div>
-      <div class="card-price">€21.99</div>
-      <div class="card-meta">22×13×5 cm · slim · Pack Hacker top value</div>
-      <ul class="specs-list">
-        <li class="ok">✓ Pack Hacker rates ABOVE Peak Design</li>
-        <li class="ok">✓ Fits Recon front org</li>
-        <li class="ok">✓ Amazon ES Prime 1-2 days</li>
-        <li class="meh">~ Less premium feel</li>
-      </ul>
-      <a href="https://www.amazon.es/dp/B0CMQ3L1QD" class="url-btn" target="_blank">Buy at Amazon ES →</a>
-    </div>
-  </article>
-
-  <article class="card premium-pick">
-    <div class="card-img">
-      <img src="https://cdn.shopify.com/s/files/1/2986/1172/files/coyote-techpouch-159A9584.jpg?v=1727738516&width=1024" alt="Peak Design Tech Pouch"
-           onerror="this.parentElement.innerHTML='<div class=\'card-img-fallback\'>Peak Design<br>Tech Pouch</div>'">
-    </div>
-    <div class="card-body">
-      <div class="badges-row">
-        <span class="badge badge-premium">3D winner</span>
-        <span class="badge badge-ykk">YKK</span>
+        <span class="badge badge-pick">Max-organización</span>
         <span class="badge badge-eu">EU direct</span>
       </div>
       <div class="card-brand">Peak Design</div>
-      <div class="card-name">Tech Pouch (Regular)</div>
+      <div class="card-name">Small Tech Pouch</div>
       <div class="card-price">€59.99</div>
-      <div class="card-meta">24×12×10 cm · 2L · origami 3D · multiple colors</div>
+      <div class="card-meta">3D origami · accordion · dividers ajustables</div>
       <ul class="specs-list">
-        <li class="ok">✓ 16+ accordion compartments</li>
-        <li class="ok">✓ Pass-through cable port</li>
-        <li class="ok">✓ EU warehouse, fast shipping</li>
-        <li class="nope">✗ Too thick for Recon front org</li>
+        <li class="ok">✓ 16+ compartimentos accordion</li>
+        <li class="ok">✓ Dividers movibles → cualquier cámara hasta zoom</li>
+        <li class="ok">✓ EU direct, sin aduanas</li>
+        <li class="meh">~ Renombrado "Small" — quizás venga Large</li>
       </ul>
       <a href="https://www.peakdesign.com/eu/products/tech-pouch" class="url-btn" target="_blank">Buy at Peak Design EU →</a>
     </div>
@@ -377,344 +367,307 @@
 
   <article class="card">
     <div class="card-img">
-      <img src="https://eu.wandrd.com/cdn/shop/files/TechBagMedium-Black-Front.png?crop=center&height=630&v=1751407853&width=1200" alt="Wandrd Tech Bag Medium"
-           onerror="this.parentElement.innerHTML='<div class=\'card-img-fallback\'>Wandrd<br>Tech Bag Medium</div>'">
+      <img src="https://www.tombihn.com/cdn/shop/files/TB1201-DL-SmallSnakeCharmer-DuskCerylon.jpg?v=1768406129&width=1200" alt="Tom Bihn Small Snake Charmer"
+           onerror="this.parentElement.innerHTML='<div class=\'card-img-fallback\'>Tom Bihn<br>Small Snake Charmer</div>'">
     </div>
     <div class="card-body">
       <div class="badges-row">
-        <span class="badge badge-budget">3D budget</span>
-        <span class="badge badge-noykk">No YKK</span>
-        <span class="badge badge-eu">EU direct</span>
+        <span class="badge badge-ykk">YKK #5</span>
+        <span class="badge badge-us">US ship</span>
       </div>
-      <div class="card-brand">Wandrd</div>
-      <div class="card-name">Tech Bag Medium</div>
-      <div class="card-price">€49</div>
-      <div class="card-meta">23×11×8 cm · 2L · accordion 3D · Classic Black</div>
+      <div class="card-brand">Tom Bihn</div>
+      <div class="card-name">Small Snake Charmer</div>
+      <div class="card-price">$35 (~€67-78 puerta BCN)</div>
+      <div class="card-meta">2L · 420D Parapack · tubular · lifetime warranty</div>
       <ul class="specs-list">
-        <li class="ok">✓ Best value 3D origami</li>
-        <li class="ok">✓ Weather-resistant</li>
-        <li class="ok">✓ EU direct, no customs</li>
-        <li class="nope">✗ Zippers not confirmed YKK</li>
+        <li class="ok">✓ YKK #5 confirmado, lifetime real</li>
+        <li class="ok">✓ Cámara fixed-lens cabe apretada</li>
+        <li class="nope">✗ NO mirrorless+pancake/zoom</li>
+        <li class="meh">~ DHL US + IVA 21% al doormat</li>
       </ul>
-      <a href="https://eu.wandrd.com/products/tech-bag" class="url-btn" target="_blank">Buy at Wandrd EU →</a>
+      <a href="https://www.tombihn.com/products/small-snake-charmer" class="url-btn" target="_blank">Buy at Tom Bihn →</a>
+    </div>
+  </article>
+
+  <article class="card premium-pick">
+    <div class="card-img">
+      <img src="https://www.tombihn.com/cdn/shop/products/370825769-snakecharmer_large_cobalt.jpg?v=1712039204&width=1200" alt="Tom Bihn Large Snake Charmer"
+           onerror="this.parentElement.innerHTML='<div class=\'card-img-fallback\'>Tom Bihn<br>Large Snake Charmer</div>'">
+    </div>
+    <div class="card-body">
+      <div class="badges-row">
+        <span class="badge badge-premium">BIFL</span>
+        <span class="badge badge-ykk">YKK #5</span>
+        <span class="badge badge-us">US ship</span>
+      </div>
+      <div class="card-brand">Tom Bihn</div>
+      <div class="card-name">Large Snake Charmer</div>
+      <div class="card-price">$38 (~€73-81 puerta BCN)</div>
+      <div class="card-meta">3L · 24×13.5×12 cm · 420D Parapack · lifetime warranty</div>
+      <ul class="specs-list">
+        <li class="ok">✓ Aloja mirrorless+pancake holgado</li>
+        <li class="ok">✓ Aloja mirrorless+zoom apretada</li>
+        <li class="ok">✓ YKK #5 confirmado, BIFL real</li>
+        <li class="meh">~ DHL US + IVA 21%</li>
+      </ul>
+      <a href="https://www.tombihn.com/products/snake-charmer" class="url-btn" target="_blank">Buy at Tom Bihn →</a>
     </div>
   </article>
 
   <article class="card">
     <div class="card-img">
-      <img src="https://bellroy-product-images.imgix.net/bellroy_dot_com_gallery_image/EUR/ETKA-BLK-231/0?auto=format&fit=max&w=1024" alt="Bellroy Tech Kit Compact Black"
-           onerror="this.parentElement.innerHTML='<div class=\'card-img-fallback\'>Bellroy<br>Tech Kit Compact</div>'">
+      <img src="https://m.media-amazon.com/images/I/81FNqbYJqxL._AC_SL1500_.jpg" alt="Tomtoc Light-T12"
+           onerror="this.parentElement.innerHTML='<div class=\'card-img-fallback\'>Tomtoc<br>Light-T12</div>'">
     </div>
     <div class="card-body">
       <div class="badges-row">
-        <span class="badge badge-premium">Premium clean</span>
-        <span class="badge badge-ykk">YKK</span>
-        <span class="badge badge-eu">Free ship ES</span>
+        <span class="badge badge-budget">Budget pick</span>
+        <span class="badge badge-eu">Amazon ES</span>
       </div>
-      <div class="card-brand">Bellroy</div>
-      <div class="card-name">Tech Kit Compact</div>
-      <div class="card-price">€59</div>
-      <div class="card-meta">20×13×4 cm · magnetic pocket · cable strip · slim 3D hybrid</div>
+      <div class="card-brand">Tomtoc</div>
+      <div class="card-name">Light-T12</div>
+      <div class="card-price">€21.99</div>
+      <div class="card-meta">slim · poliéster · cable elastic strips</div>
       <ul class="specs-list">
-        <li class="ok">✓ Magnetic pocket + cable strip</li>
-        <li class="ok">✓ Cleaner aesthetic</li>
-        <li class="ok">✓ Slim profile fits Recon front</li>
-        <li class="ok">✓ Duties + taxes included EU</li>
+        <li class="ok">✓ Pack Hacker rates above PD en valor</li>
+        <li class="ok">✓ Amazon ES Prime, sin aduanas</li>
+        <li class="nope">✗ NO mirrorless+pancake/zoom</li>
+        <li class="meh">~ Sin dividers movibles</li>
       </ul>
-      <a href="https://bellroy.com/products/tech-kit?color=black&material=ripstop_recycled&size=compact" class="url-btn" target="_blank">Buy at Bellroy →</a>
-    </div>
-  </article>
-
-
-  <article class="card">
-    <div class="card-img">
-      <img src="https://alpakagear.com/cdn/shop/files/ELEMENTS_TECH_CASE_MINI_STRAP_AXOFLUX_BLACK.jpg?v=1747207986&width=1024" alt="Alpaka Elements Tech Case Mini"
-           onerror="this.parentElement.innerHTML='<div class=\'card-img-fallback\'>Alpaka<br>Tech Case Mini</div>'">
-    </div>
-    <div class="card-body">
-      <div class="badges-row">
-        <span class="badge badge-premium">Tech-ready</span>
-        <span class="badge badge-ykk">YKK waterproof</span>
-        <span class="badge badge-us">Global ship</span>
-      </div>
-      <div class="card-brand">Alpaka</div>
-      <div class="card-name">Elements Tech Case Mini</div>
-      <div class="card-price">€49</div>
-      <div class="card-meta">23×13.5×7 cm · Axoflux or X-Pac VX42 · semi-rigid</div>
-      <ul class="specs-list">
-        <li class="ok">✓ Most "tech-ready" interior organization</li>
-        <li class="ok">✓ Waterproof YKK</li>
-        <li class="ok">✓ Multiple fabric choices</li>
-        <li class="meh">~ 7cm depth tight for Recon front org</li>
-      </ul>
-      <a href="https://alpakagear.com/products/elements-tech-case-mini" class="url-btn" target="_blank">Buy at Alpaka →</a>
+      <a href="https://www.amazon.es/dp/B0CMQ3L1QD" class="url-btn" target="_blank">Buy at Amazon ES →</a>
     </div>
   </article>
 
 </div>
-
-<!-- ============================================ -->
-<!-- CATEGORY 2: PACKING CUBES                     -->
-<!-- ============================================ -->
-
 </details>
 
-<details open>
-<summary><h2>Category 2 · Packing Cubes Set of 3</h2></summary>
-<p class="dim">Community rule: 3 cubes max · NO compression · S/M/L for gym + travel</p>
+<!-- ============================================ -->
+<!-- CAMERA FIT MATRIX                            -->
+<!-- ============================================ -->
 
-<div class="grid grid-3">
+<details open>
+<summary><h2>Cámara fit · qué cámara entra en qué pouch</h2></summary>
+<p class="dim">3 referencias de cámara que pueden interesar (compactas de bolsillo descartadas). Vos elegís cuál priorizar.</p>
+
+<table class="camera-matrix">
+  <thead>
+    <tr>
+      <th>Tech pouch</th>
+      <th>Mirrorless fixed-lens<span>Fuji X100V · Leica Q3<br>~12×7×5cm</span></th>
+      <th>Mirrorless + pancake<span>Sony A7C + 35/1.8<br>~12×7×7cm</span></th>
+      <th>Mirrorless + zoom corto<span>Sony A7C + 28-60<br>~12×7×9cm</span></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Bellroy Tech Kit Compact</td><td class="fits">✓</td><td class="fits">✓</td><td class="tight">⚠ apretada</td></tr>
+    <tr><td>Peak Design Small Tech Pouch</td><td class="fits">✓</td><td class="fits">✓</td><td class="fits">✓</td></tr>
+    <tr><td>Tom Bihn Small Snake Charmer</td><td class="tight">⚠ apretada</td><td class="no">✗</td><td class="no">✗</td></tr>
+    <tr><td>Tom Bihn Large Snake Charmer</td><td class="fits">✓</td><td class="fits">✓</td><td class="tight">⚠ apretada</td></tr>
+    <tr><td>Tomtoc Light-T12</td><td class="tight">⚠ apretada</td><td class="no">✗</td><td class="no">✗</td></tr>
+  </tbody>
+</table>
+</details>
+
+<!-- ============================================ -->
+<!-- CATEGORY 2: PACKING CUBES (Decathlon bulk)   -->
+<!-- ============================================ -->
+
+<details open>
+<summary><h2>Packing cubes · bulk Decathlon</h2></summary>
+<p class="dim">Para 1 semana de ropa con Recon 30L necesitás ~10L cube + ~3-5L cube. Decathlon ES no documenta marca de cremallera, pero ratings 4.8★+ con miles de reviews. 1 alternativa premium europea sumada al final.</p>
+
+<div class="grid grid-4">
 
   <article class="card pass">
     <div class="card-img">
-      <img src="https://eaglecreek.eu/cdn/shop/files/EC050406_820_a.jpg?v=1722599534&width=1024" alt="Eagle Creek Pack-It Reveal Set 3"
+      <div class="card-img-fallback">Forclaz<br>Lote 3 (1 grande + 2 pequeñas)</div>
+    </div>
+    <div class="card-body">
+      <div class="badges-row">
+        <span class="badge badge-pass">Best-seller real</span>
+        <span class="badge badge-eu">Decathlon ES</span>
+      </div>
+      <div class="card-brand">Forclaz / Decathlon</div>
+      <div class="card-name">Lote 3 — 1 grande + 2 pequeñas</div>
+      <div class="card-price">€9.99</div>
+      <div class="card-meta">23L total · poliéster + revestimiento PU · cremallera + malla</div>
+      <ul class="specs-list">
+        <li class="ok">✓ 4.85★ con 2.345 reviews</li>
+        <li class="ok">✓ Cremallera + ventana malla</li>
+        <li class="ok">✓ Entra 1 semana de ropa con margen</li>
+        <li class="meh">~ Marca cremallera no documentada</li>
+      </ul>
+      <a href="https://www.decathlon.es/es/p/organizadores-de-maleta-lote-de-3-1-grande-y-2-pequenas-forclaz/303058/c71c70c251m8512006" class="url-btn" target="_blank">Buy at Decathlon ES →</a>
+    </div>
+  </article>
+
+  <article class="card top">
+    <div class="card-img">
+      <div class="card-img-fallback">Forclaz<br>2×15L</div>
+    </div>
+    <div class="card-body">
+      <div class="badges-row">
+        <span class="badge badge-pick">Para ropa semana</span>
+        <span class="badge badge-eu">Decathlon ES</span>
+      </div>
+      <div class="card-brand">Forclaz / Decathlon</div>
+      <div class="card-name">Organizador 2×15L</div>
+      <div class="card-price">€7.99</div>
+      <div class="card-meta">2 cubes 15L · 38×32×10 cm c/u · poliéster · cremallera + asa</div>
+      <ul class="specs-list">
+        <li class="ok">✓ 15L = ropa semana real con margen</li>
+        <li class="ok">✓ 4.80★ con 356 reviews</li>
+        <li class="ok">✓ Asa para sacar del bag</li>
+        <li class="meh">~ Marca cremallera no documentada</li>
+      </ul>
+      <a href="https://www.decathlon.es/es/p/organizadores-de-maleta-2x15l-forclaz/179611/c26c198c149m8572590" class="url-btn" target="_blank">Buy at Decathlon ES →</a>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-img">
+      <div class="card-img-fallback">Forclaz<br>2×7L</div>
+    </div>
+    <div class="card-body">
+      <div class="badges-row">
+        <span class="badge badge-budget">Complemento small</span>
+        <span class="badge badge-eu">Decathlon ES</span>
+      </div>
+      <div class="card-brand">Forclaz / Decathlon</div>
+      <div class="card-name">Organizador 2×7L</div>
+      <div class="card-price">€6.99</div>
+      <div class="card-meta">2 cubes 7L · 30×25×10 cm c/u · poliéster · cremallera + asa</div>
+      <ul class="specs-list">
+        <li class="ok">✓ 4.86★ con 881 reviews</li>
+        <li class="ok">✓ Para underwear / calcetines / pijama</li>
+        <li class="ok">✓ Combina con 2×15L para set M+S</li>
+      </ul>
+      <a href="https://www.decathlon.es/es/p/organizadores-de-maleta-2x7l-forclaz/179612/c67c153m8576244" class="url-btn" target="_blank">Buy at Decathlon ES →</a>
+    </div>
+  </article>
+
+  <article class="card premium-pick">
+    <div class="card-img">
+      <img src="https://eaglecreek.eu/cdn/shop/files/EC050406_820_a.jpg?v=1722599534&width=2048" alt="Eagle Creek Pack-It Reveal Set"
            onerror="this.parentElement.innerHTML='<div class=\'card-img-fallback\'>Eagle Creek<br>Pack-It Reveal Set</div>'">
     </div>
     <div class="card-body">
       <div class="badges-row">
-        <span class="badge badge-pick">Consensus winner</span>
-        <span class="badge badge-eu">EU direct</span>
+        <span class="badge badge-premium">Premium alt</span>
+        <span class="badge badge-eu">EU stock</span>
       </div>
       <div class="card-brand">Eagle Creek</div>
-      <div class="card-name">Pack-It Reveal Set XS/S/M (Black)</div>
+      <div class="card-name">Pack-It Reveal Set XS/S/M</div>
       <div class="card-price">€53</div>
-      <div class="card-meta">3 sizes · polyester ripstop recycled · mesh visibility · lifetime warranty</div>
+      <div class="card-meta">XS≈1.25L · S≈3.6L · M≈7.2L · poliéster ripstop reciclado · lifetime warranty</div>
       <ul class="specs-list">
-        <li class="ok">✓ r/onebag repeat consensus winner</li>
-        <li class="ok">✓ Mesh visibility both sides</li>
-        <li class="ok">✓ Lifetime warranty</li>
-        <li class="meh">~ Zoom zippers (high quality, not YKK)</li>
+        <li class="ok">✓ r/onebag consensus winner</li>
+        <li class="ok">✓ Zoom zippers + ventana malla</li>
+        <li class="ok">✓ Lifetime warranty real</li>
+        <li class="meh">~ 5× más caro que Forclaz Lote 3</li>
       </ul>
       <a href="https://eaglecreek.eu/products/pack-it-reveal-cube-set-xssm" class="url-btn" target="_blank">Buy at Eagle Creek EU →</a>
     </div>
   </article>
 
-  <article class="card warn">
-    <div class="card-img">
-      <img src="https://www.thule.com/-/p/cb5rLJ6FovwigJlg_rFe-pXd_zR94WvvCViILYirbQ0/rs:fit/f:avif/cb:2.1/q:80/h:500/w:500/plain/approved/std.lang.all/95/90/1579590.png" alt="Thule Compression Cube Set"
-           onerror="this.parentElement.innerHTML='<div class=\'card-img-fallback\'>Thule<br>Compression Cube Set</div>'">
-    </div>
-    <div class="card-body">
-      <div class="badges-row">
-        <span class="badge badge-ykk">YKK confirmed</span>
-        <span class="badge badge-warn">No black</span>
-      </div>
-      <div class="card-brand">Thule</div>
-      <div class="card-name">Compression Cube Set S+M</div>
-      <div class="card-price">€44.95</div>
-      <div class="card-meta">2 cubes · 100D ripstop bluesign · White / Pond Gray / Beige</div>
-      <ul class="specs-list">
-        <li class="ok">✓ YKK genuine</li>
-        <li class="ok">✓ Bluesign certified material</li>
-        <li class="nope">✗ NO BLACK option (only White/Gray/Beige)</li>
-        <li class="meh">~ Only 2 cubes (not 3)</li>
-      </ul>
-      <a href="https://www.thule.com/es-es/organizers/packing-cubes-and-folders/thule-compression-cube-set-_-3205564" class="url-btn" target="_blank">Buy at Thule ES →</a>
-    </div>
-  </article>
-
-  <article class="card">
-    <div class="card-img">
-      <img src="https://contents.mediadecathlon.com/p1574424/k$8b2d550289be3b43c3397ecbaa5bf8bd/picture.jpg?format=auto&f=600x600" alt="Forclaz Decathlon Set 3"
-           onerror="this.parentElement.innerHTML='<div class=\'card-img-fallback\'>Forclaz<br>Set 3 Travel Cubes</div>'">
-    </div>
-    <div class="card-body">
-      <div class="badges-row">
-        <span class="badge badge-budget">Budget €10</span>
-        <span class="badge badge-noykk">Generic zip</span>
-      </div>
-      <div class="card-brand">Decathlon Forclaz</div>
-      <div class="card-name">Set of 3 Travel Cubes</div>
-      <div class="card-price">€9.99</div>
-      <div class="card-meta">1L + 2 small · polyester · 4.9/5 rating · Black</div>
-      <ul class="specs-list">
-        <li class="ok">✓ Cheapest by far</li>
-        <li class="ok">✓ Validate the system before upgrading</li>
-        <li class="meh">~ Generic zippers</li>
-      </ul>
-      <a href="https://www.decathlon.es/es/p/organizadores-de-maleta-lote-de-3-1-grande-y-2-pequenas-forclaz/_/R-p-303058" class="url-btn" target="_blank">Buy at Decathlon ES →</a>
-    </div>
-  </article>
-
 </div>
-
-<!-- ============================================ -->
-<!-- CATEGORY 3: ACCESSORY POUCH                   -->
-<!-- ============================================ -->
-
 </details>
-
-<details open>
-<summary><h2>Category 3 · Small Accessory Pouch</h2></summary>
-<p class="dim">For sunglasses + AirPods + keys + valuables · slim flat preferred</p>
-
-<div class="grid grid-3">
-
-  <article class="card pass">
-    <div class="card-img">
-      <img src="https://cdn.shopify.com/s/files/1/0527/6637/6136/files/accessory-bags-bagsbag-organizationaccessory-bags-1047381.jpg?v=1769783482" alt="Topo Designs Small Accessory Bag Black/Black"
-           onerror="this.parentElement.innerHTML='<div class=\'card-img-fallback\'>Topo Designs<br>Small Accessory Bag</div>'">
-    </div>
-    <div class="card-body">
-      <div class="badges-row">
-        <span class="badge badge-pick">No-brainer</span>
-        <span class="badge badge-ykk">YKK confirmed</span>
-        <span class="badge badge-eu">EU direct</span>
-      </div>
-      <div class="card-brand">Topo Designs</div>
-      <div class="card-name">Small Accessory Bag (Black/Black)</div>
-      <div class="card-price">€20.06</div>
-      <div class="card-meta">21.6×14 cm · 1000D nylon recycled · Black/Black</div>
-      <ul class="specs-list">
-        <li class="ok">✓ YKK confirmed at this price</li>
-        <li class="ok">✓ Fits sunglasses + AirPods + keys + cables</li>
-        <li class="ok">✓ 1000D recycled nylon</li>
-        <li class="ok">✓ Reputable brand, EU direct</li>
-      </ul>
-      <a href="https://topodesigns.eu/products/accessory-bags-black-black?variant=55436341215608" class="url-btn" target="_blank">Buy at Topo Designs EU →</a>
-    </div>
-  </article>
-
-  <article class="card">
-    <div class="card-img">
-      <img src="https://cdn.shopify.com/s/files/1/0527/6637/6136/files/accessory-bags-bagsbag-organizationaccessory-bags-8724761.jpg?v=1769783482" alt="Topo Designs Micro Accessory Bag"
-           onerror="this.parentElement.innerHTML='<div class=\'card-img-fallback\'>Topo Designs<br>Micro Accessory Bag</div>'">
-    </div>
-    <div class="card-body">
-      <div class="badges-row">
-        <span class="badge badge-pick">Compact</span>
-        <span class="badge badge-ykk">YKK</span>
-        <span class="badge badge-eu">EU direct</span>
-      </div>
-      <div class="card-brand">Topo Designs</div>
-      <div class="card-name">Micro Accessory Bag (Black/Black)</div>
-      <div class="card-price">€16.03</div>
-      <div class="card-meta">12×8.25 cm · same material · for AirPods + keys only</div>
-      <ul class="specs-list">
-        <li class="ok">✓ Same quality as Small</li>
-        <li class="ok">✓ Ultra-compact</li>
-        <li class="meh">~ Too small for sunglasses</li>
-      </ul>
-      <a href="https://topodesigns.eu/products/accessory-bags-black-black?variant=55436341182840" class="url-btn" target="_blank">Buy at Topo Designs EU →</a>
-    </div>
-  </article>
-
-
-</div>
 
 <!-- ============================================ -->
 <!-- COMBOS                                        -->
 <!-- ============================================ -->
 
-</details>
-
 <details open>
-<summary><h2>Recommended Combos · 6 Options</h2></summary>
-<p class="dim">Each combo: 1 tech pouch + 1 cube set + 1 accessory pouch</p>
-<p class="dim" style="margin-top:0.4rem;font-style:italic;">Zipper note: combos A-D use YKK or quality alternatives. Combos E-F use Decathlon Forclaz which has generic no-brand zippers (no marca declarada) — quality is "fine for casual use" with 3-year Decathlon warranty. NOT YKK-level smoothness, but not garbage either. If you want YKK, stick with A-D.</p>
+<summary><h2>Combos · 3 default &lt;€100 + 2 premium</h2></summary>
+<p class="dim">El recomendado cumple "bulk Decathlon barato + 1 tech pouch externo bueno".</p>
 
 <div class="combos">
 
   <article class="combo-card">
-    <h3>Option A · Value</h3>
-    <div class="combo-name">Wandrd + Eagle Creek + Topo</div>
-    <div class="combo-price">~€122</div>
+    <h3>A · Budget hybrid</h3>
+    <div class="combo-name">Tomtoc + Forclaz Lote 3</div>
+    <div class="combo-price">€31.98</div>
     <div class="combo-items">
-      Wandrd Tech Bag Medium €49<br>
-      Eagle Creek Pack-It Reveal Set 3 €53<br>
-      Topo Small Accessory €20
+      Tomtoc Light-T12 €21.99<br>
+      Forclaz Lote 3 €9.99
     </div>
-    <p class="combo-summary">Cheapest full kit. Trade-off: Wandrd zippers not YKK.</p>
+    <div class="combo-summary">El más barato funcional. Tech ok para cables/cargador, NO cámara.</div>
   </article>
 
   <article class="combo-card recommended">
-    <h3>Option B · YKK Purist · RECOMMENDED</h3>
-    <div class="combo-name">Aer + Eagle Creek + Topo</div>
-    <div class="combo-price">~€126</div>
+    <h3>B · ⭐ RECOMENDADO</h3>
+    <div class="combo-name">Bellroy + Forclaz 2×15L</div>
+    <div class="combo-price">€66.99</div>
     <div class="combo-items">
-      Aer Slim Pouch 2 €53<br>
-      Eagle Creek Pack-It Reveal Set 3 €53<br>
-      Topo Small Accessory €20
+      Bellroy Tech Kit Compact €59<br>
+      Forclaz 2×15L €7.99
     </div>
-    <p class="combo-summary">All YKK or premium-equivalent. Slim Aer fits Recon front perfectly.</p>
+    <div class="combo-summary">Bulk Decathlon cubes + 1 tech pouch externo decente. Cubre cámara hasta mirrorless+pancake. Ratio precio/función óptimo bajo €100.</div>
   </article>
 
   <article class="combo-card">
-    <h3>Option C · Cult Value · BIFL</h3>
-    <div class="combo-name">Tom Bihn + Eagle Creek + Topo</div>
+    <h3>C · Tech max-orga</h3>
+    <div class="combo-name">Peak Design + Forclaz Lote 3</div>
+    <div class="combo-price">€69.98</div>
+    <div class="combo-items">
+      Peak Design Small Tech Pouch €59.99<br>
+      Forclaz Lote 3 €9.99
+    </div>
+    <div class="combo-summary">Si querés accordion 3D max-organización + dividers movibles para cualquier cámara hasta zoom.</div>
+  </article>
+
+  <article class="combo-card premium">
+    <h3>D · Cubes premium</h3>
+    <div class="combo-name">Bellroy + Eagle Creek</div>
+    <div class="combo-price">€112</div>
+    <div class="combo-items">
+      Bellroy Tech Kit Compact €59<br>
+      Eagle Creek Reveal Set €53
+    </div>
+    <div class="combo-summary">Pasaste &gt;€100. Sumás cubes con lifetime warranty real.</div>
+  </article>
+
+  <article class="combo-card premium">
+    <h3>E · BIFL YKK</h3>
+    <div class="combo-name">Tom Bihn Large + Eagle Creek</div>
     <div class="combo-price">~€130</div>
     <div class="combo-items">
-      Tom Bihn Snake Charmer ~€57 puerta<br>
-      Eagle Creek Pack-It Reveal Set 3 €53<br>
-      Topo Small Accessory €20
+      Tom Bihn Large Snake Charmer ~€77 BCN<br>
+      Eagle Creek Reveal Set €53
     </div>
-    <p class="combo-summary">Lifetime warranty real. Made USA. Tubular shape.</p>
-  </article>
-
-  <article class="combo-card">
-    <h3>Option D · Premium 3D</h3>
-    <div class="combo-name">Peak Design + Eagle Creek + Topo</div>
-    <div class="combo-price">~€133</div>
-    <div class="combo-items">
-      Peak Design Tech Pouch €60<br>
-      Eagle Creek Pack-It Reveal Set 3 €53<br>
-      Topo Small Accessory €20
-    </div>
-    <p class="combo-summary">Maximum tech organization (16+ compartments). Goes in Recon main.</p>
-  </article>
-
-  <article class="combo-card">
-    <h3>Option E · All-Decathlon</h3>
-    <div class="combo-name">Forclaz x3 — single trip</div>
-    <div class="combo-price">~€33</div>
-    <div class="combo-items">
-      Forclaz Estuche Rígido Tech €15<br>
-      Forclaz Set 3 Travel Cubes €10<br>
-      Forclaz Multipocket €8
-    </div>
-    <p class="combo-summary">Cheapest possible. One Decathlon visit. Generic zippers — 3-year warranty covers defects but not YKK-grade.</p>
-  </article>
-
-  <article class="combo-card">
-    <h3>Option F · Decathlon premium-leaning</h3>
-    <div class="combo-name">Forclaz Travel 100 + Cubes + Multipocket</div>
-    <div class="combo-price">~€48</div>
-    <div class="combo-items">
-      Forclaz Travel 100 Organizer €20<br>
-      Forclaz Set 3 Travel Cubes €10<br>
-      Forclaz Travel S Pouch €7<br>
-      + cable kit Forclaz €11
-    </div>
-    <p class="combo-summary">Decathlon's better tier (Travel 100 series). Still generic zippers but heavier denier fabric. If zippers matter, swap tech pouch for Tomtoc T12 €22 (YKK) → ~€60 total.</p>
+    <div class="combo-summary">YKK confirmados en los dos, lifetime warranty real. Setup que dura 20 años.</div>
   </article>
 
 </div>
-
-<!-- ============================================ -->
-<!-- AVOID                                         -->
-<!-- ============================================ -->
-
 </details>
 
+<!-- ============================================ -->
+<!-- WHAT NOT TO BUY                              -->
+<!-- ============================================ -->
+
 <details>
-<summary><h2>What NOT to Buy</h2></summary>
+<summary><h2>What NOT to buy</h2></summary>
 <div class="avoid-box">
-  <ul>
-    <li><b>Compression cubes (general)</b> — community consensus: don't compress enough on daily-wear clothes to justify bulk</li>
-    <li><b>Bagail / Amazon Basics no-name cubes</b> — zippers fail, sausage shape after 6 months</li>
-    <li><b>Peak Design Wash Pouch</b> — already have toiletry kit</li>
-    <li><b>Bellroy Standing Pouch / Plus</b> — discontinued. Use Cinch Pouch instead.</li>
-    <li><b>Evergoods CIVIC Access Pouch 2L</b> at ~€95+ — CAP 1L is better value at $75 (~€90 puerta) but still expensive vs Aer/Tom Bihn</li>
-    <li><b>Pills pouch / Bellroy Pencil Case</b> — don't carry meds daily</li>
-    <li><b>Document/passport pouch</b> — Recon hidden secret pocket is enough</li>
-    <li><b>Thule Compression Cube Set</b> — no black colorway available</li>
-  </ul>
+<ul>
+  <li><b>Compression cubes (Thule etc.)</b> — community consensus: no comprimen lo suficiente para justificar el bulk extra. Stick con cubes regulares.</li>
+  <li><b>Bagsmart / Amazon Basics no-name cubes</b> — community warning: zippers fallan, sausage shape después de 6 meses.</li>
+  <li><b>Aer Slim Pouch / Wandrd Tech Bag</b> — slim flat innecesario para tu setup tech-first en main del Recon.</li>
+  <li><b>Topo Designs Small / Micro Accessory Bag</b> — €16-20 redundante teniendo cubes chicos del set Forclaz.</li>
+  <li><b>Bellroy Cinch Pouch</b> — descartado: no gastar +€60 en accessory pouch.</li>
+  <li><b>Bellroy Standing Pouch</b> — descontinuado por Bellroy.</li>
+  <li><b>Alpaka Tech Case Mini</b> — €49 de Singapur, aduanas inciertas en checkout.</li>
+  <li><b>Vanguard Vesta Aspire / Solognac prismáticos</b> — son cámara-dedicated, no tech pouch versátil.</li>
+  <li><b>Forclaz Ultralight / Trekking neceser</b> — son neceseres de toiletry (ya tenés).</li>
+  <li><b>TRAVELHAWK organizador cables</b> — €18.95 sin padding, mal ratio.</li>
+  <li><b>Evergoods CIVIC Access Pouch</b> — €90+ puerta US, demasiado caro para lo que es.</li>
+  <li><b>Peak Design Wash Pouch</b> — toiletry, ya tenés.</li>
+</ul>
 </div>
 </details>
 
 <footer>
-  <p>v2 · all URLs + image URLs verified live with Playwright (browser real) · all prices EUR EU/Spain · May 2026</p>
-  <p style="margin-top: 0.4rem;">Click any product card's button to buy direct. If image doesn't load, click button to view on retailer site.</p>
+  <p>v5 · mayo 2026 · TNF Recon 30L · Barcelona<br>
+  Plan: bulk Decathlon cubes + 1 tech pouch externo · Default budget &lt;€100 · 2 premium combos &gt;€100</p>
 </footer>
 
 </body>
